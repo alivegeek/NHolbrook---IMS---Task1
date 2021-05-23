@@ -166,14 +166,16 @@ namespace NHolbrook___IMS___Task1.Forms
                 buttonSave.Enabled = false;
 
             }
-            else if (priceInput.Text.All(char.IsDigit) == false)
-            {
-                buttonSave.Enabled = false;
-                priceInput.BackColor = Color.Coral;
+            //else if (priceInput.Text.All(char.IsDigit) == false)
+              else if (double.TryParse(priceInput.Text, out double x))
+                     { 
+                            buttonSave.Enabled = true;
+                            priceInput.BackColor = Color.White;
+                        
             }
             else
             {
-                priceInput.BackColor = Color.White;
+                priceInput.BackColor = Color.Coral;
                 SaveValidation(priceInput.Text);
             }
             
@@ -226,17 +228,27 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void machineIDinput_TextChanged(object sender, EventArgs e)
         {
+           
             if (String.IsNullOrWhiteSpace(machineIDinput.Text))
             {
                 machineIDinput.BackColor = Color.Coral;
                 buttonSave.Enabled = false;
 
             }
-            else if (machineIDinput.Text.All(char.IsDigit) == false)
+           else if (machineID.Text == "Machine ID")
             {
-                buttonSave.Enabled = false;
-                machineIDinput.BackColor = Color.Coral;
+                if (machineIDinput.Text.All(char.IsDigit) == false)
+                {
+                    buttonSave.Enabled = false;
+                    machineIDinput.BackColor = Color.Coral;
+                }
+                else
+                {
+                    machineIDinput.BackColor = Color.White;
+                    SaveValidation(machineIDinput.Text);
+                }
             }
+           
             else
             {
                 machineIDinput.BackColor = Color.White;
