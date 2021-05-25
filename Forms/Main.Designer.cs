@@ -29,38 +29,39 @@ namespace NHolbrook___IMS___Task1.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PartsDGV = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.partsDGVlabel = new System.Windows.Forms.Label();
             this.Products = new System.Windows.Forms.Label();
             this.exit = new System.Windows.Forms.Button();
             this.addPart = new System.Windows.Forms.Button();
             this.modPart = new System.Windows.Forms.Button();
             this.delPart = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.deleteProductButton = new System.Windows.Forms.Button();
+            this.modifyProductButton = new System.Windows.Forms.Button();
+            this.addProductButton = new System.Windows.Forms.Button();
+            this.ProductsDGV = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.PartsDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // PartsDGV
             // 
             this.PartsDGV.AllowUserToAddRows = false;
             this.PartsDGV.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.PartsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PartsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.PartsDGV.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.PartsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.PartsDGV.Location = new System.Drawing.Point(12, 88);
             this.PartsDGV.MultiSelect = false;
             this.PartsDGV.Name = "PartsDGV";
             this.PartsDGV.ReadOnly = true;
+            this.PartsDGV.RowHeadersVisible = false;
             this.PartsDGV.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.PartsDGV.RowTemplate.Height = 25;
             this.PartsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -77,23 +78,6 @@ namespace NHolbrook___IMS___Task1.Forms
             this.label1.Size = new System.Drawing.Size(281, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Inventory Managment System";
-            // 
-            // dataGridView1
-            // 
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(437, 88);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(435, 326);
-            this.dataGridView1.TabIndex = 2;
             // 
             // partsDGVlabel
             // 
@@ -156,54 +140,78 @@ namespace NHolbrook___IMS___Task1.Forms
             this.delPart.UseVisualStyleBackColor = true;
             this.delPart.Click += new System.EventHandler(this.delPart_Click);
             // 
-            // button1
+            // deleteProductButton
             // 
-            this.button1.Location = new System.Drawing.Point(805, 420);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(67, 38);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = true;
+            this.deleteProductButton.Location = new System.Drawing.Point(805, 420);
+            this.deleteProductButton.Name = "deleteProductButton";
+            this.deleteProductButton.Size = new System.Drawing.Size(67, 38);
+            this.deleteProductButton.TabIndex = 11;
+            this.deleteProductButton.Text = "Delete";
+            this.deleteProductButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // modifyProductButton
             // 
-            this.button2.Location = new System.Drawing.Point(732, 420);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(67, 38);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Modify";
-            this.button2.UseVisualStyleBackColor = true;
+            this.modifyProductButton.Location = new System.Drawing.Point(732, 420);
+            this.modifyProductButton.Name = "modifyProductButton";
+            this.modifyProductButton.Size = new System.Drawing.Size(67, 38);
+            this.modifyProductButton.TabIndex = 10;
+            this.modifyProductButton.Text = "Modify";
+            this.modifyProductButton.UseVisualStyleBackColor = true;
+            this.modifyProductButton.Click += new System.EventHandler(this.modifyProductButton_Click);
             // 
-            // button3
+            // addProductButton
             // 
-            this.button3.Location = new System.Drawing.Point(659, 420);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(67, 38);
-            this.button3.TabIndex = 9;
-            this.button3.Text = "Add";
-            this.button3.UseVisualStyleBackColor = true;
+            this.addProductButton.Location = new System.Drawing.Point(659, 420);
+            this.addProductButton.Name = "addProductButton";
+            this.addProductButton.Size = new System.Drawing.Size(67, 38);
+            this.addProductButton.TabIndex = 9;
+            this.addProductButton.Text = "Add";
+            this.addProductButton.UseVisualStyleBackColor = true;
+            this.addProductButton.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // ProductsDGV
+            // 
+            this.ProductsDGV.AllowUserToAddRows = false;
+            this.ProductsDGV.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ProductsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.ProductsDGV.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
+            this.ProductsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.ProductsDGV.Location = new System.Drawing.Point(437, 88);
+            this.ProductsDGV.MultiSelect = false;
+            this.ProductsDGV.Name = "ProductsDGV";
+            this.ProductsDGV.ReadOnly = true;
+            this.ProductsDGV.RowHeadersVisible = false;
+            this.ProductsDGV.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            this.ProductsDGV.RowTemplate.Height = 25;
+            this.ProductsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.ProductsDGV.Size = new System.Drawing.Size(435, 326);
+            this.ProductsDGV.TabIndex = 12;
+            this.ProductsDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsDGV_CellContentClick);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 516);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.ProductsDGV);
+            this.Controls.Add(this.deleteProductButton);
+            this.Controls.Add(this.modifyProductButton);
+            this.Controls.Add(this.addProductButton);
             this.Controls.Add(this.delPart);
             this.Controls.Add(this.modPart);
             this.Controls.Add(this.addPart);
             this.Controls.Add(this.exit);
             this.Controls.Add(this.Products);
             this.Controls.Add(this.partsDGVlabel);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PartsDGV);
             this.Name = "Main";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.PartsDGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ProductsDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,15 +221,15 @@ namespace NHolbrook___IMS___Task1.Forms
 
         public System.Windows.Forms.DataGridView PartsDGV;
         private System.Windows.Forms.Label label1;
-        public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label partsDGVlabel;
         private System.Windows.Forms.Label Products;
         private System.Windows.Forms.Button exit;
         private System.Windows.Forms.Button addPart;
         private System.Windows.Forms.Button modPart;
         private System.Windows.Forms.Button delPart;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button deleteProductButton;
+        private System.Windows.Forms.Button modifyProductButton;
+        private System.Windows.Forms.Button addProductButton;
+        public System.Windows.Forms.DataGridView ProductsDGV;
     }
 }

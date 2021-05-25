@@ -16,8 +16,6 @@ namespace NHolbrook___IMS___Task1
         static void Main()
         {
             //populate sample data here
-            // Classes.Part p = new Classes.Part(1, "Double Helix Doohickey", 5309, 1, 10, 25);
-            //Note to self: Abstract classes cant be instantiated.. oops
             Classes.Outsourced part =  new Classes.Outsourced("Power Converter", 100, 1, 1, 255, "Tashi Station");
             Classes.Outsourced part2 = new Classes.Outsourced("Warp core ejector coil", 1024, 1, 10, 25, "Academy surplus");
             Classes.Outsourced part3 = new Classes.Outsourced("Litigating Ligature", 53.09, 1, 2, 8, "Johnnie Cochran Supply");
@@ -32,6 +30,18 @@ namespace NHolbrook___IMS___Task1
             Classes.Inventory.addPart(part4);
             Classes.Inventory.addPart(part5);
             Classes.Inventory.addPart(part6);
+
+            //Products sample data
+            Classes.Product product1 = new Classes.Product(1, "Red Bicycle", 11.14, 15, 5, 25);
+            Classes.Product product2 = new Classes.Product(2, "Yellow Bicycle", 9.66, 19, 1, 20);
+            Classes.Product product3 = new Classes.Product(3, "Blue Bicycle", 12.77, 5, 1, 25);
+
+            Classes.Inventory.addProduct(product1);
+            Classes.Inventory.addProduct(product2);
+            Classes.Inventory.addProduct(product3);
+            
+
+            //productID, name, price, inStock, min, max
 
             //if (Forms.Main.PartsDGV == null || PartsDGV.Rows.Count == 0)
             //{

@@ -18,10 +18,12 @@ namespace NHolbrook___IMS___Task1.Forms
 
             InitializeComponent();
             PartsDGV.DataSource = Classes.Inventory.AllParts;
+            ProductsDGV.DataSource = Classes.Inventory.Products;
+
 
         }
 
-      
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
            
@@ -109,6 +111,50 @@ namespace NHolbrook___IMS___Task1.Forms
                 return;
             }
             
+        }
+
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ProductsDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AddProduct addproduct = new();
+            addproduct.IDinput.Text = Convert.ToString(Classes.Inventory.GetNextProductID());
+            addproduct.ShowDialog();
+        }
+
+        private void modifyProductButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridViewRow selectedRow = ProductsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
+                var productID = Convert.ToInt32(selectedRow.Cells["ProductID"].Value);
+                //Debug.WriteLine(Classes.Inventory.AllParts[currentIDX].Name);
+                Classes.Product product = Classes.Inventory.lookupProduct(productID);
+                // Debug.WriteLine(part);
+                Forms.AddProduct productForm = new();
+                productForm.IDinput.Text = Convert.ToString(product.ProductID);
+                productForm.nameInput.Text = product.Name;
+                productForm.inventoryInput.Text = Convert.ToString(product.InStock);
+                productForm.priceInput.Text = Convert.ToString(product.Price);
+                productForm.maxInput.Text = Convert.ToString(product.Max);
+                productForm.minInput.Text = Convert.ToString(product.Min);
+
+
+                productForm.ShowDialog();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select something to modify");
+                return;
+            }
         }
     }
 }

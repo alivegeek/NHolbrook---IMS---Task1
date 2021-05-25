@@ -17,16 +17,20 @@ namespace NHolbrook___IMS___Task1.Classes
         //Initalize variables for incrementing productIDs.
         //Note To Self: Will be incremented later
 
-        private static int nextPartID = 0;
-        private static int nextProductID = 0;
+        private static int nextPartID = AllParts.Count;
+        private static int nextProductID = 0; //Products.Count;
+        
+
 
         //Note to Self: Maybe just get this over now?
-        public static int GetNextPartID() {
+        public static int GetNextPartID() { 
             return nextPartID++;
        }
         public static int GetNextProductID()
         {
-            return nextProductID++;
+            nextProductID = Products.Count;
+            nextProductID++;
+            return nextProductID;
         }
 
         public static void addProduct(Product product)
@@ -74,7 +78,18 @@ namespace NHolbrook___IMS___Task1.Classes
             }
             return null; 
         }
-        
+
+        public static Product lookupProduct(int productID)
+        {
+            foreach (Product x in Products)
+            {
+                if (x.ProductID == productID)
+                {
+                    return x;
+                }
+            }
+            return null;
+        }
         public static void updatePart(int partID, Part part)
         {
             
