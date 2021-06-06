@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.ComponentModel;
+using System.Collections;
 namespace NHolbrook___IMS___Task1.Classes
 {
     public class Product
     {
-        //Note to self - public list of type Part named AssociatedParts
-        public List<Part> AssociatedParts;
-        //associatedparts = new ArrayList();
+        
+        public BindingList<Part> AssociatedParts = new BindingList<Part>();
 
         public int ProductID { get; set; }
 
@@ -26,19 +26,22 @@ namespace NHolbrook___IMS___Task1.Classes
 
 
         //Constructors
-        public Product(string name, double price, int inStock, int min, int max, int associatedPartsID)
-            : this(Inventory.GetNextProductID(), name, price, inStock, min, max, associatedPartsID) { }
-        public Product(int productID, string name, double price, int inStock, int min, int max, int associatedPartsID)
-        : this(productID, name, price, inStock, min, max)
-        {
-            Part refPart = LookupAssociatedPart(associatedPartsID);
-            this.AssociatedParts = new List<Part>();
-            AssociatedParts.Add(refPart);
+        public Product(string name, double price, int inStock, int min, int max, ArrayList associatedPart)
+            : this(Inventory.GetNextProductID(), name, price, inStock, min, max, associatedPart) {
 
-            //this.AssociatedParts = AssociatedParts.Add(LookupAssociatedPart(associatedPartsID));
         }
 
-        public Part LookupAssociatedPart(int partID)
+        public Product(string name, double price, int inStock, int min, int max)
+            : this(Inventory.GetNextProductID(), name, price, inStock, min, max) { }
+        public Product(int productID, string name, double price, int inStock, int min, int max, ArrayList associatedPart)
+        : this(productID, name, price, inStock, min, max)
+        {
+           
+
+
+        }
+
+        public static Part LookupAssociatedPart(int partID)
         {
             foreach (Part part in Classes.Inventory.AllParts)
             {
@@ -61,20 +64,21 @@ namespace NHolbrook___IMS___Task1.Classes
         }
 
         public void addAssociatedPart(Part part)
-        {
-
+        { 
+            AssociatedParts.Add(part);
         }
 
         public bool removeAssociatedPart(int part)
         {
-            return true; //BANDAID
+            var part2 = LookupAssociatedPart(part);
+            AssociatedParts.Remove(part2);
+           
+
+            
+            return true; 
         }
 
-      /*  public Part lokupAssociatedPart(int part)
-        {
-            return null; //BANDAID
-        }
-*/
+    
 
     }
 }

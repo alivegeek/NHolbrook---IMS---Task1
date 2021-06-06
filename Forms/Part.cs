@@ -279,9 +279,9 @@ namespace NHolbrook___IMS___Task1.Forms
             {
 
             }
-           //fix this, i want to update the old form now show a new one.!
-            Main main = new Main();
-            main.ShowDialog();
+            //fix this, i want to update the old form now show a new one.!
+            // Main main = new Main();
+            // main.ShowDialog();
             this.Close();
 
            

@@ -93,7 +93,6 @@ namespace NHolbrook___IMS___Task1.Forms
                 DataGridViewRow selectedRow = PartsDGV.SelectedRows[0];
                 var toDelete = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
                 Classes.Part partToDelete = Classes.Inventory.lookupPart(toDelete);
-                Debug.WriteLine(partToDelete);
 
                if (MessageBox.Show($"are you sure you want to delete {partToDelete.Name}?" , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes){
                     Classes.Inventory.deletePart(partToDelete);
@@ -127,34 +126,64 @@ namespace NHolbrook___IMS___Task1.Forms
         {
             AddProduct addproduct = new();
             addproduct.IDinput.Text = Convert.ToString(Classes.Inventory.GetNextProductID());
-            addproduct.ShowDialog();
+            try
+            {
+                addproduct.ShowDialog();
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return;
+            }
         }
 
-        private void modifyProductButton_Click(object sender, EventArgs e)
+        public void modifyProductButton_Click(object sender, EventArgs e)
         {
             try
             {
                 DataGridViewRow selectedRow = ProductsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
                 var productID = Convert.ToInt32(selectedRow.Cells["ProductID"].Value);
+                Forms.AddProduct.productID = productID;
                 //Debug.WriteLine(Classes.Inventory.AllParts[currentIDX].Name);
                 Classes.Product product = Classes.Inventory.lookupProduct(productID);
                 // Debug.WriteLine(part);
                 Forms.AddProduct productForm = new();
-                productForm.IDinput.Text = Convert.ToString(product.ProductID);
+                productForm.IDinput.Text = Convert.ToString(product.ProductID -1) ;
                 productForm.nameInput.Text = product.Name;
                 productForm.inventoryInput.Text = Convert.ToString(product.InStock);
                 productForm.priceInput.Text = Convert.ToString(product.Price);
                 productForm.maxInput.Text = Convert.ToString(product.Max);
                 productForm.minInput.Text = Convert.ToString(product.Min);
 
+                Classes.Globals.associatedPartsDGVIndex = Classes.Inventory.Products.IndexOf(product);
+                Debug.WriteLine("Index is " + Classes.Globals.associatedPartsDGVIndex);
+                Forms.AddProduct.modifyOrNew = 1;
+
+
+                foreach (Classes.Product each in Classes.Inventory.Products)
+                {
+                    Debug.WriteLine(each.Name);
+                    foreach (Classes.Part item in each.AssociatedParts)
+                    {
+                        Debug.WriteLine(item.Name);
+
+                    }
+                }
+
 
                 productForm.ShowDialog();
+                this.Close();
+                return;
             }
             catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Please select something to modify");
                 return;
             }
+        }
+
+        private void deleteProductButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

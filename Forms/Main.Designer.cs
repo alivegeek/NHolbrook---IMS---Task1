@@ -148,6 +148,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.deleteProductButton.TabIndex = 11;
             this.deleteProductButton.Text = "Delete";
             this.deleteProductButton.UseVisualStyleBackColor = true;
+            this.deleteProductButton.Click += new System.EventHandler(this.deleteProductButton_Click);
             // 
             // modifyProductButton
             // 

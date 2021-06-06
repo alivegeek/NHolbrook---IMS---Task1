@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace NHolbrook___IMS___Task1
 {
-    static class Program
+     static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
@@ -39,16 +39,8 @@ namespace NHolbrook___IMS___Task1
             Classes.Inventory.addProduct(product1);
             Classes.Inventory.addProduct(product2);
             Classes.Inventory.addProduct(product3);
-            
 
-            //productID, name, price, inStock, min, max
-
-            //if (Forms.Main.PartsDGV == null || PartsDGV.Rows.Count == 0)
-            //{
-            //    MessageBox.Show("Its blank!");
-            //}
-            //else MessageBox.Show("Its not!");
-
+        
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();

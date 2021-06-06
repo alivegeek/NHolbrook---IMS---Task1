@@ -43,15 +43,15 @@ namespace NHolbrook___IMS___Task1.Forms
             this.minInput = new System.Windows.Forms.TextBox();
             this.maxInput = new System.Windows.Forms.TextBox();
             this.canidatePartsLabel = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.allCandidatePartsDGV = new System.Windows.Forms.DataGridView();
             this.addPartsButtoni = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.associatedPartsDGV = new System.Windows.Forms.DataGridView();
             this.associatedPartsLabel = new System.Windows.Forms.Label();
             this.deleteButton = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allCandidatePartsDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.associatedPartsDGV)).BeginInit();
             this.SuspendLayout();
             // 
             // productTitleLabel
@@ -177,14 +177,20 @@ namespace NHolbrook___IMS___Task1.Forms
             this.canidatePartsLabel.TabIndex = 13;
             this.canidatePartsLabel.Text = "All candidate parts";
             // 
-            // dataGridView1
+            // allCandidatePartsDGV
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(379, 99);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(621, 207);
-            this.dataGridView1.TabIndex = 14;
+            this.allCandidatePartsDGV.AllowUserToAddRows = false;
+            this.allCandidatePartsDGV.AllowUserToDeleteRows = false;
+            this.allCandidatePartsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.allCandidatePartsDGV.Location = new System.Drawing.Point(379, 99);
+            this.allCandidatePartsDGV.MultiSelect = false;
+            this.allCandidatePartsDGV.Name = "allCandidatePartsDGV";
+            this.allCandidatePartsDGV.RowHeadersVisible = false;
+            this.allCandidatePartsDGV.RowTemplate.Height = 25;
+            this.allCandidatePartsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.allCandidatePartsDGV.Size = new System.Drawing.Size(621, 207);
+            this.allCandidatePartsDGV.TabIndex = 14;
+            this.allCandidatePartsDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // addPartsButtoni
             // 
@@ -194,15 +200,24 @@ namespace NHolbrook___IMS___Task1.Forms
             this.addPartsButtoni.TabIndex = 15;
             this.addPartsButtoni.Text = "Add";
             this.addPartsButtoni.UseVisualStyleBackColor = true;
+            this.addPartsButtoni.Click += new System.EventHandler(this.addPartsButtoni_Click);
             // 
-            // dataGridView2
+            // associatedPartsDGV
             // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(379, 381);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 25;
-            this.dataGridView2.Size = new System.Drawing.Size(621, 207);
-            this.dataGridView2.TabIndex = 16;
+            this.associatedPartsDGV.AllowUserToAddRows = false;
+            this.associatedPartsDGV.AllowUserToDeleteRows = false;
+            this.associatedPartsDGV.AllowUserToOrderColumns = true;
+            this.associatedPartsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.associatedPartsDGV.Location = new System.Drawing.Point(379, 381);
+            this.associatedPartsDGV.MultiSelect = false;
+            this.associatedPartsDGV.Name = "associatedPartsDGV";
+            this.associatedPartsDGV.ReadOnly = true;
+            this.associatedPartsDGV.RowHeadersVisible = false;
+            this.associatedPartsDGV.RowTemplate.Height = 25;
+            this.associatedPartsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.associatedPartsDGV.Size = new System.Drawing.Size(621, 207);
+            this.associatedPartsDGV.TabIndex = 16;
+            this.associatedPartsDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.associatedPartsDGV_CellContentClick);
             // 
             // associatedPartsLabel
             // 
@@ -221,6 +236,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.deleteButton.TabIndex = 18;
             this.deleteButton.Text = "Delete";
             this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
             // 
             // buttonSave
             // 
@@ -250,9 +266,9 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.associatedPartsLabel);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.associatedPartsDGV);
             this.Controls.Add(this.addPartsButtoni);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.allCandidatePartsDGV);
             this.Controls.Add(this.canidatePartsLabel);
             this.Controls.Add(this.maxInput);
             this.Controls.Add(this.minInput);
@@ -269,8 +285,8 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Controls.Add(this.productTitleLabel);
             this.Name = "AddProduct";
             this.Text = "AddProduct";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.allCandidatePartsDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.associatedPartsDGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,9 +308,9 @@ namespace NHolbrook___IMS___Task1.Forms
         public System.Windows.Forms.TextBox minInput;
         public System.Windows.Forms.TextBox maxInput;
         private System.Windows.Forms.Label canidatePartsLabel;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView allCandidatePartsDGV;
         private System.Windows.Forms.Button addPartsButtoni;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView associatedPartsDGV;
         private System.Windows.Forms.Label associatedPartsLabel;
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button buttonSave;

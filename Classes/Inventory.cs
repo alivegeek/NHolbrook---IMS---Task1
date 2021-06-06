@@ -12,7 +12,7 @@ namespace NHolbrook___IMS___Task1.Classes
         //create lists from Inventory UML
         public static List<Product> Products = new List<Product>();
         public static List<Part> AllParts = new List<Part>();
-
+        
 
         //Initalize variables for incrementing productIDs.
         //Note To Self: Will be incremented later
@@ -22,7 +22,6 @@ namespace NHolbrook___IMS___Task1.Classes
         
 
 
-        //Note to Self: Maybe just get this over now?
         public static int GetNextPartID() { 
             return nextPartID++;
        }
