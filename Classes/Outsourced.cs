@@ -9,14 +9,16 @@ namespace NHolbrook___IMS___Task1.Classes
     class Outsourced : Part
     {
 
-        public string CompanyName { get; set; }
-            
-        
+        public new string CompanyName;
+
+
+
         public Outsourced(string name, double price, int inStock, int min, int max, string companyName)
             : base(name, price, inStock, min, max)
         {
             CompanyName = companyName;
         }
-    }
 
+       
+    }
 }

@@ -164,7 +164,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.idInput.ReadOnly = true;
             this.idInput.Size = new System.Drawing.Size(160, 23);
             this.idInput.TabIndex = 10;
-            this.idInput.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.idInput.TextChanged += new System.EventHandler(this.idInput_TextChanged);
             // 
             // nameInput
             // 

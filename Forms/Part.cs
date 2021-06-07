@@ -17,9 +17,9 @@ namespace NHolbrook___IMS___Task1.Forms
 
             InitializeComponent();
 
-           
+
             buttonSave.Enabled = false;
-          
+
 
         }
 
@@ -32,20 +32,20 @@ namespace NHolbrook___IMS___Task1.Forms
 
                 return;
             }
-        
+
             if (String.IsNullOrWhiteSpace(nameInput.Text) == false ||
                String.IsNullOrWhiteSpace(inventoryInput.Text) == false ||
                 String.IsNullOrWhiteSpace(priceInput.Text) == false ||
                 String.IsNullOrWhiteSpace(maxInput.Text) == false ||
                 String.IsNullOrWhiteSpace(minInput.Text) == false ||
-                String.IsNullOrWhiteSpace(machineIDinput.Text) == false 
-)           
+                String.IsNullOrWhiteSpace(machineIDinput.Text) == false
+)
             {
-               
+
                 buttonSave.Enabled = true;
-               
+
                 return;
-                
+
             }
             else
             {
@@ -125,12 +125,12 @@ namespace NHolbrook___IMS___Task1.Forms
                 nameInput.BackColor = Color.Coral;
                 buttonSave.Enabled = false;
 
-            } 
+            }
             else
             {
                 nameInput.BackColor = Color.White;
             }
-            
+
 
         }
 
@@ -154,7 +154,7 @@ namespace NHolbrook___IMS___Task1.Forms
             {
                 inventoryInput.BackColor = Color.White;
             }
-            
+
 
         }
 
@@ -167,18 +167,18 @@ namespace NHolbrook___IMS___Task1.Forms
 
             }
             //else if (priceInput.Text.All(char.IsDigit) == false)
-              else if (double.TryParse(priceInput.Text, out double x))
-                     { 
-                            buttonSave.Enabled = true;
-                            priceInput.BackColor = Color.White;
-                        
+            else if (double.TryParse(priceInput.Text, out double x))
+            {
+                buttonSave.Enabled = true;
+                priceInput.BackColor = Color.White;
+
             }
             else
             {
                 priceInput.BackColor = Color.Coral;
                 SaveValidation(priceInput.Text);
             }
-            
+
 
         }
 
@@ -200,7 +200,7 @@ namespace NHolbrook___IMS___Task1.Forms
                 maxInput.BackColor = Color.White;
                 SaveValidation(maxInput.Text);
             }
-            
+
 
         }
 
@@ -222,20 +222,20 @@ namespace NHolbrook___IMS___Task1.Forms
                 minInput.BackColor = Color.White;
                 SaveValidation(minInput.Text);
             }
-            
+
 
         }
 
         private void machineIDinput_TextChanged(object sender, EventArgs e)
         {
-           
+
             if (String.IsNullOrWhiteSpace(machineIDinput.Text))
             {
                 machineIDinput.BackColor = Color.Coral;
                 buttonSave.Enabled = false;
 
             }
-           else if (machineID.Text == "Machine ID")
+            else if (machineID.Text == "Machine ID")
             {
                 if (machineIDinput.Text.All(char.IsDigit) == false)
                 {
@@ -248,49 +248,104 @@ namespace NHolbrook___IMS___Task1.Forms
                     SaveValidation(machineIDinput.Text);
                 }
             }
-           
+
             else
             {
                 machineIDinput.BackColor = Color.White;
                 SaveValidation(machineIDinput.Text);
             }
-            
+
 
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            if (radioInHouse.Checked)
+            if (Classes.Globals.partIsNew)
             {
-                Classes.Inventory.addPart(new Classes.Inhouse(
-                             //     12, //FIX THIS, need to get ID
-                                  nameInput.Text,
-                                  Convert.ToDouble(priceInput.Text),
-                                  Convert.ToInt32(inventoryInput.Text),
-                                  Convert.ToInt32(minInput.Text),
-                                  Convert.ToInt32(maxInput.Text),
-                                  Convert.ToInt32(machineIDinput.Text)));
+                if (radioInHouse.Checked)
+                {
+                    Classes.Inventory.addPart(new Classes.Inhouse(
+                                      //     12, //FIX THIS, need to get ID
+                                      nameInput.Text,
+                                      Convert.ToDouble(priceInput.Text),
+                                      Convert.ToInt32(inventoryInput.Text),
+                                      Convert.ToInt32(minInput.Text),
+                                      Convert.ToInt32(maxInput.Text),
+                                      Convert.ToInt32(machineIDinput.Text)));
+
+                }
+                //public Part(int partID, string name, double price, int inStock, int min, int max)
+                //Inhouse(int partID, string name, double price, int inStock, int min, int max, int machineID)
+                // :base(partID, name, price, inStock, min, max)
+                else
+                {
+                    if (radioOutsourced.Checked)
+                    {
+                        Classes.Inventory.addPart(new Classes.Outsourced(
+                                          //     12, //FIX THIS, need to get ID
+                                          nameInput.Text,
+                                          Convert.ToDouble(priceInput.Text),
+                                          Convert.ToInt32(inventoryInput.Text),
+                                          Convert.ToInt32(minInput.Text),
+                                          Convert.ToInt32(maxInput.Text),
+                                          machineIDinput.Text));
+
+                    }
+                }
+            } else
+
+            {
+                if (radioInHouse.Checked)
+                {
+                    Classes.Inventory.updatePart(Convert.ToInt32(idInput.Text), new Classes.Inhouse(
+                                      nameInput.Text,
+                                      Convert.ToDouble(priceInput.Text),
+                                      Convert.ToInt32(inventoryInput.Text),
+                                      Convert.ToInt32(minInput.Text),
+                                      Convert.ToInt32(maxInput.Text),
+                                      Convert.ToInt32(machineIDinput.Text)));
+                  
+                    Classes.Inventory.changePartSource(Convert.ToInt32(idInput.Text), new Classes.Inhouse(
+                                      nameInput.Text,
+                                      Convert.ToDouble(priceInput.Text),
+                                      Convert.ToInt32(inventoryInput.Text),
+                                      Convert.ToInt32(minInput.Text),
+                                      Convert.ToInt32(maxInput.Text),
+                                      Convert.ToInt32(machineIDinput.Text)), true );
+                }
+
+                else
+                {
+                    if (radioOutsourced.Checked)
+                    {
+                        Classes.Inventory.updatePart(Convert.ToInt32(idInput.Text), new Classes.Outsourced(
+                                          nameInput.Text,
+                                          Convert.ToDouble(priceInput.Text),
+                                          Convert.ToInt32(inventoryInput.Text),
+                                          Convert.ToInt32(minInput.Text),
+                                          Convert.ToInt32(maxInput.Text),
+                                          machineIDinput.Text));
+                        Classes.Inventory.changePartSource(Convert.ToInt32(idInput.Text), new Classes.Outsourced(
+                                          nameInput.Text,
+                                          Convert.ToDouble(priceInput.Text),
+                                          Convert.ToInt32(inventoryInput.Text),
+                                          Convert.ToInt32(minInput.Text),
+                                          Convert.ToInt32(maxInput.Text),
+                                          machineIDinput.Text), false);
+                    }
+                }
+
+
 
             }
-            //public Part(int partID, string name, double price, int inStock, int min, int max)
-            //Inhouse(int partID, string name, double price, int inStock, int min, int max, int machineID)
-           // :base(partID, name, price, inStock, min, max)
-            else
-            {
 
-            }
-            //fix this, i want to update the old form now show a new one.!
-            // Main main = new Main();
-            // main.ShowDialog();
-            this.Close();
-
-           
+            
+        this.Close();
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void idInput_TextChanged(object sender, EventArgs e)
         {
-            
 
         }
     }

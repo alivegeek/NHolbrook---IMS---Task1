@@ -9,10 +9,11 @@ namespace NHolbrook___IMS___Task1
 {
      static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
-        [STAThread]
+       
+    /// <summary>
+    ///  The main entry point for the application.
+    /// </summary>
+    [STAThread]
         static void Main()
         {
             //populate sample data here
@@ -40,7 +41,7 @@ namespace NHolbrook___IMS___Task1
             Classes.Inventory.addProduct(product2);
             Classes.Inventory.addProduct(product3);
 
-        
+            
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
@@ -48,5 +49,7 @@ namespace NHolbrook___IMS___Task1
             Main main = new Main();
             Application.Run(main);
         }
+
+       
     }
 }

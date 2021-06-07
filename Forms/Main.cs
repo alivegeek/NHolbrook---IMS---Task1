@@ -23,6 +23,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
         }
 
+      
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -43,7 +44,7 @@ namespace NHolbrook___IMS___Task1.Forms
         private void addPart_Click(object sender, EventArgs e)
         {
             Part part = new Part();
-            
+            Classes.Globals.partIsNew = true;
             part.idInput.Text = Convert.ToString(Classes.Inventory.GetNextPartID());
             part.ShowDialog();
             
@@ -51,6 +52,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void modPart_Click(object sender, EventArgs e)
         {
+            Classes.Globals.partIsNew = false;
             try
             {
                 DataGridViewRow selectedRow = PartsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
@@ -65,16 +67,17 @@ namespace NHolbrook___IMS___Task1.Forms
                 partForm.priceInput.Text = Convert.ToString(part.Price);
                 partForm.maxInput.Text = Convert.ToString(part.Max);
                 partForm.minInput.Text = Convert.ToString(part.Min);
-                partForm.machineIDinput.Text = Convert.ToString(part.PartID);
+                partForm.machineIDinput.Text = Convert.ToString(part.MachineID);
 
 
                 partForm.ShowDialog();
+
+                return;
             } catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Please select something to modify");
                 return;
             }
-
             //if (PartsDGV.CurrentRow.Selected == false)
 
         }  
