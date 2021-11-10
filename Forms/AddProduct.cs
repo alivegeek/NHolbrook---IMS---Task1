@@ -8,31 +8,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using System.Diagnostics;
 namespace NHolbrook___IMS___Task1.Forms
+
 {
     public partial class AddProduct : Form
     {
         public static int modifyOrNew = 0;
         public static int productID;
-
-
+        //  List<int> associatedPartIDs = new  List<int>();
+        private static BindingList<Classes.Part> DGVAssoParts = new BindingList<Classes.Part>();
         public AddProduct()
 
         {
 
             InitializeComponent();
 
-            //public BindingSource associatedPartsBindingSource = new BindingSource();
-            // public BindingList<Part> associatedPartsBindingList = new BindingList<Part>();
 
-            //test data - delete in a bit
-            //Classes.Outsourced part = new Classes.Outsourced("Power Converter", 100, 1, 1, 255, "Tashi Station");
-           // Classes.Inventory.Products[0].AssociatedParts.Add(part);
 
             allCandidatePartsDGV.DataSource = Classes.Inventory.AllParts;
-            //associatedPartsDGV.DataSource = Classes.Inventory.Products[0].AssociatedParts;
-           associatedPartsDGV.DataSource = Classes.Inventory.Products[Classes.Globals.associatedPartsDGVIndex].AssociatedParts;
-
+            associatedPartsDGV.DataSource = DGVAssoParts;
 
 
             if (String.IsNullOrWhiteSpace(nameInput.Text))
@@ -55,10 +50,10 @@ namespace NHolbrook___IMS___Task1.Forms
             {
                 maxInput.BackColor = Color.Coral;
             }
-            
 
 
         }
+    
 
         public void SaveValidation(string s)
         {
@@ -116,7 +111,17 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            
+            Classes.Product updatedProduct = new Classes.Product(Convert.ToInt32(IDinput.Text), nameInput.Text, Convert.ToDouble(priceInput.Text), Convert.ToInt32(inventoryInput.Text), Convert.ToInt32(minInput.Text), Convert.ToInt32(maxInput.Text));
+
+            foreach( Classes.Part part in DGVAssoParts) {
+                updatedProduct.AssociatedParts.Add(part);
+            }
+            Classes.Product productObject = Classes.Inventory.lookupProduct(Convert.ToInt32(IDinput.Text));
+            foreach (Classes.Part part in DGVAssoParts)
+            {
+                productObject.AssociatedParts.Add(part);
+            }
+            this.Hide();
                 if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text))
             {
                 MessageBox.Show("Your minimum exceeds your maximum.");
@@ -136,7 +141,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
                     }
                 }
-                this.Close();
+                this.Hide();
 
                 Main main = new Main();
                 main.ShowDialog();
@@ -269,22 +274,35 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void addPartsButtoni_Click(object sender, EventArgs e)
         {
-            try
-            {
+
+           // Classes.Product prodToAsso = AssociatedPartsDGVhelper();
                 DataGridViewRow selectedRow = allCandidatePartsDGV.SelectedRows[0];
                 var partID = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
-                Classes.Part partToAdd = Classes.Inventory.lookupPart(partID);
+            Classes.Part part = Classes.Inventory.lookupPart(partID);
+            DGVAssoParts.Add(part);
+            //prodToAsso.associatedParts.Add(part);
+                
+           //productObjectHelper().AssociatedParts.Add(partID);
 
-                Classes.Inventory.Products[Convert.ToInt32(IDinput.Text)].AssociatedParts.Add(partToAdd);
-               
-          
 
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                MessageBox.Show("Please select something to add");
-                return;
-            }
+                //var partid = (convert.toint32(selectedrow.cells["partid"].value) - 1);
+                //classes.part parttoadd = classes.inventory.lookuppart(partid);
+                //classes.product producttoassociate = classes.inventory.lookupproduct(partid);
+                //debug.writeline(partid);
+
+                //bindinglist<part> allparts = new bindinglist<part>();
+                //debug.writeline(producttoassociate.name);
+                //producttoassociate.associatedparts.add(partid);
+                //classes.inventory.products[convert.toint32(idinput.text)].associatedparts.add(parttoadd);
+
+
+
+            
+            //catch (ArgumentOutOfRangeException)
+            //{
+            //    MessageBox.Show("Please select something to add");
+            //    return;
+            //}
 
         }
 
@@ -296,11 +314,10 @@ namespace NHolbrook___IMS___Task1.Forms
 
                 DataGridViewRow selectedRow = associatedPartsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
                 var partID = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
-                var partToDelete = Classes.Product.LookupAssociatedPart(partID);
+                var partToDelete = lookupPart(partID);
                 if (MessageBox.Show($"are you sure you want to delete {partToDelete.Name}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                   // Classes.Product.removeAssociatedPart(partID);
-                    
+                    deletePart(partToDelete);
                 }
 
 
@@ -313,6 +330,42 @@ namespace NHolbrook___IMS___Task1.Forms
            
           
             
+        }
+
+        private void AddProduct_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
+        private  Classes.Part lookupPart(int partID)
+        {
+            foreach (Classes.Part x in DGVAssoParts)
+
+            {
+                if (x.PartID == partID)
+                {
+                    return x;
+                }
+            }
+            return null;
+        }
+
+        private bool deletePart(Classes.Part part)
+        {
+            try
+            {
+                DGVAssoParts.Remove(lookupPart(part.PartID));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

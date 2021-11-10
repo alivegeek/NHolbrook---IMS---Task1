@@ -9,7 +9,7 @@ namespace NHolbrook___IMS___Task1.Classes
 {
     public class Product
     {
-        
+
         public BindingList<Part> AssociatedParts = new BindingList<Part>();
 
         public int ProductID { get; set; }
@@ -24,34 +24,27 @@ namespace NHolbrook___IMS___Task1.Classes
 
         public int Max { get; set; }
 
+      //  public BindingList<Part> associatedParts { get; set; }
+
 
         //Constructors
-        public Product(string name, double price, int inStock, int min, int max, ArrayList associatedPart)
-            : this(Inventory.GetNextProductID(), name, price, inStock, min, max, associatedPart) {
-
-        }
-
         public Product(string name, double price, int inStock, int min, int max)
-            : this(Inventory.GetNextProductID(), name, price, inStock, min, max) { }
-        public Product(int productID, string name, double price, int inStock, int min, int max, ArrayList associatedPart)
-        : this(productID, name, price, inStock, min, max)
+            : this(Inventory.GetNextProductID(), name, price, inStock, min, max)
         {
-           
-
 
         }
 
-        public static Part LookupAssociatedPart(int partID)
+        //public Product(int productID, string name, double price, int inStock, int min, int max)
+        //    : this(productID, name, price, inStock, min, max)
+
+        public void AddAssociatedPart(Part part)
         {
-            foreach (Part part in Classes.Inventory.AllParts)
-            {
-                if(part.PartID == partID)
-                {
-                    return part;
-                }
-            }
-            return null;
+            AssociatedParts.Add(part);
         }
+
+
+
+
 
         public Product(int productID, string name, double price, int inStock, int min, int max)
         {
@@ -61,24 +54,12 @@ namespace NHolbrook___IMS___Task1.Classes
             InStock = inStock;
             Min = min;
             Max = max;
+
+            BindingList<Part> associatedParts = new BindingList<Part>();
         }
-
-        public void addAssociatedPart(Part part)
-        { 
-            AssociatedParts.Add(part);
-        }
-
-        public bool removeAssociatedPart(int part)
-        {
-            var part2 = LookupAssociatedPart(part);
-            AssociatedParts.Remove(part2);
-           
-
-            
-            return true; 
-        }
-
-    
 
     }
+
 }
+
+      

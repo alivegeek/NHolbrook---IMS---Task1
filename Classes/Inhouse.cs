@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 namespace NHolbrook___IMS___Task1.Classes
 
 {
-     class Inhouse : Part
+    public class Inhouse : Part
     {
-        public override int? MachineID { get; set; }
+       // public int MachineID { get; set; }
 
 
 
-        public Inhouse(string name, double price, int inStock, int min, int max, int machineID) 
-            :base(name, price, inStock, min, max)
+        public Inhouse(int partID, string name, double price, int inStock, int min, int max, int machineID) 
+            :base(partID, name, price, inStock, min, max)
         {
         
             MachineID = machineID;

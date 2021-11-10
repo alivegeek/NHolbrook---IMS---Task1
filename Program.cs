@@ -17,12 +17,12 @@ namespace NHolbrook___IMS___Task1
         static void Main()
         {
             //populate sample data here
-            Classes.Outsourced part =  new Classes.Outsourced("Power Converter", 100, 1, 1, 255, "Tashi Station");
-            Classes.Outsourced part2 = new Classes.Outsourced("Warp core ejector coil", 1024, 1, 10, 25, "Academy surplus");
-            Classes.Outsourced part3 = new Classes.Outsourced("Litigating Ligature", 53.09, 1, 2, 8, "Johnnie Cochran Supply");
-            Classes.Outsourced part4 = new Classes.Outsourced("Redudant Rotating Oscillator", 3.50, 1, 10, 25, "redundundundancy inc.");
-            Classes.Outsourced part5 = new Classes.Outsourced("George bushing", 5309, 43, 2001, 2009, "Whitehouse procurement co.");
-            Classes.Outsourced part6 = new Classes.Outsourced("Over-bearing", 5309, 99, 10, 25, "Inlaws R Us");
+            Classes.Inhouse part = new Classes.Inhouse(Classes.Inventory.GetNextPartID(), "Power Converter", 100, 1, 1, 255, 22); ;
+            Classes.Outsourced part2 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(),"Warp core ejector coil", 1024, 1, 10, 25, "Academy surplus");
+            Classes.Outsourced part3 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "Litigating Ligature", 53.09, 1, 2, 8, "Johnnie Cochran Supply");
+            Classes.Outsourced part4 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "Redudant Rotating Oscillator", 3.50, 1, 10, 25, "redundundundancy inc.");
+            Classes.Outsourced part5 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "George bushing", 5309, 43, 2001, 2009, "Whitehouse procurement co.");
+            Classes.Outsourced part6 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "Over-bearing", 5309, 99, 10, 25, "Inlaws R Us");
 
             //Classes.Inventory.AllParts.Add(part);
             Classes.Inventory.addPart(part);

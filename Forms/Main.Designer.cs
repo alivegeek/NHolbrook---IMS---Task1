@@ -29,8 +29,8 @@ namespace NHolbrook___IMS___Task1.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PartsDGV = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.partsDGVlabel = new System.Windows.Forms.Label();
@@ -51,21 +51,23 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.PartsDGV.AllowUserToAddRows = false;
             this.PartsDGV.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.PartsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.PartsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.PartsDGV.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.PartsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PartsDGV.Location = new System.Drawing.Point(12, 88);
+            this.PartsDGV.Location = new System.Drawing.Point(14, 117);
+            this.PartsDGV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.PartsDGV.MultiSelect = false;
             this.PartsDGV.Name = "PartsDGV";
             this.PartsDGV.ReadOnly = true;
             this.PartsDGV.RowHeadersVisible = false;
+            this.PartsDGV.RowHeadersWidth = 51;
             this.PartsDGV.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.PartsDGV.RowTemplate.Height = 25;
             this.PartsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.PartsDGV.Size = new System.Drawing.Size(419, 326);
+            this.PartsDGV.Size = new System.Drawing.Size(479, 435);
             this.PartsDGV.TabIndex = 0;
             this.PartsDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -73,9 +75,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(14, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(281, 25);
+            this.label1.Size = new System.Drawing.Size(358, 32);
             this.label1.TabIndex = 1;
             this.label1.Text = "Inventory Managment System";
             // 
@@ -83,9 +85,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.partsDGVlabel.AutoSize = true;
             this.partsDGVlabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.partsDGVlabel.Location = new System.Drawing.Point(12, 64);
+            this.partsDGVlabel.Location = new System.Drawing.Point(14, 85);
             this.partsDGVlabel.Name = "partsDGVlabel";
-            this.partsDGVlabel.Size = new System.Drawing.Size(44, 21);
+            this.partsDGVlabel.Size = new System.Drawing.Size(54, 28);
             this.partsDGVlabel.TabIndex = 3;
             this.partsDGVlabel.Text = "Parts";
             this.partsDGVlabel.Click += new System.EventHandler(this.label2_Click);
@@ -94,17 +96,18 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.Products.AutoSize = true;
             this.Products.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.Products.Location = new System.Drawing.Point(437, 64);
+            this.Products.Location = new System.Drawing.Point(499, 85);
             this.Products.Name = "Products";
-            this.Products.Size = new System.Drawing.Size(71, 21);
+            this.Products.Size = new System.Drawing.Size(89, 28);
             this.Products.TabIndex = 4;
             this.Products.Text = "Products";
             // 
             // exit
             // 
-            this.exit.Location = new System.Drawing.Point(807, 467);
+            this.exit.Location = new System.Drawing.Point(922, 623);
+            this.exit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.exit.Name = "exit";
-            this.exit.Size = new System.Drawing.Size(65, 37);
+            this.exit.Size = new System.Drawing.Size(74, 49);
             this.exit.TabIndex = 5;
             this.exit.Text = "Exit";
             this.exit.UseVisualStyleBackColor = true;
@@ -112,9 +115,10 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             // addPart
             // 
-            this.addPart.Location = new System.Drawing.Point(216, 420);
+            this.addPart.Location = new System.Drawing.Point(247, 560);
+            this.addPart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addPart.Name = "addPart";
-            this.addPart.Size = new System.Drawing.Size(67, 38);
+            this.addPart.Size = new System.Drawing.Size(77, 51);
             this.addPart.TabIndex = 6;
             this.addPart.Text = "Add";
             this.addPart.UseVisualStyleBackColor = true;
@@ -122,9 +126,10 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             // modPart
             // 
-            this.modPart.Location = new System.Drawing.Point(289, 420);
+            this.modPart.Location = new System.Drawing.Point(330, 560);
+            this.modPart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.modPart.Name = "modPart";
-            this.modPart.Size = new System.Drawing.Size(67, 38);
+            this.modPart.Size = new System.Drawing.Size(77, 51);
             this.modPart.TabIndex = 7;
             this.modPart.Text = "Modify";
             this.modPart.UseVisualStyleBackColor = true;
@@ -132,9 +137,10 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             // delPart
             // 
-            this.delPart.Location = new System.Drawing.Point(362, 420);
+            this.delPart.Location = new System.Drawing.Point(414, 560);
+            this.delPart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.delPart.Name = "delPart";
-            this.delPart.Size = new System.Drawing.Size(67, 38);
+            this.delPart.Size = new System.Drawing.Size(77, 51);
             this.delPart.TabIndex = 8;
             this.delPart.Text = "Delete";
             this.delPart.UseVisualStyleBackColor = true;
@@ -142,9 +148,10 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             // deleteProductButton
             // 
-            this.deleteProductButton.Location = new System.Drawing.Point(805, 420);
+            this.deleteProductButton.Location = new System.Drawing.Point(920, 560);
+            this.deleteProductButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.deleteProductButton.Name = "deleteProductButton";
-            this.deleteProductButton.Size = new System.Drawing.Size(67, 38);
+            this.deleteProductButton.Size = new System.Drawing.Size(77, 51);
             this.deleteProductButton.TabIndex = 11;
             this.deleteProductButton.Text = "Delete";
             this.deleteProductButton.UseVisualStyleBackColor = true;
@@ -152,9 +159,10 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             // modifyProductButton
             // 
-            this.modifyProductButton.Location = new System.Drawing.Point(732, 420);
+            this.modifyProductButton.Location = new System.Drawing.Point(837, 560);
+            this.modifyProductButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.modifyProductButton.Name = "modifyProductButton";
-            this.modifyProductButton.Size = new System.Drawing.Size(67, 38);
+            this.modifyProductButton.Size = new System.Drawing.Size(77, 51);
             this.modifyProductButton.TabIndex = 10;
             this.modifyProductButton.Text = "Modify";
             this.modifyProductButton.UseVisualStyleBackColor = true;
@@ -162,9 +170,10 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             // addProductButton
             // 
-            this.addProductButton.Location = new System.Drawing.Point(659, 420);
+            this.addProductButton.Location = new System.Drawing.Point(753, 560);
+            this.addProductButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addProductButton.Name = "addProductButton";
-            this.addProductButton.Size = new System.Drawing.Size(67, 38);
+            this.addProductButton.Size = new System.Drawing.Size(77, 51);
             this.addProductButton.TabIndex = 9;
             this.addProductButton.Text = "Add";
             this.addProductButton.UseVisualStyleBackColor = true;
@@ -174,29 +183,31 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.ProductsDGV.AllowUserToAddRows = false;
             this.ProductsDGV.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ProductsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ProductsDGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle2;
             this.ProductsDGV.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.ProductsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ProductsDGV.Location = new System.Drawing.Point(437, 88);
+            this.ProductsDGV.Location = new System.Drawing.Point(499, 117);
+            this.ProductsDGV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ProductsDGV.MultiSelect = false;
             this.ProductsDGV.Name = "ProductsDGV";
             this.ProductsDGV.ReadOnly = true;
             this.ProductsDGV.RowHeadersVisible = false;
+            this.ProductsDGV.RowHeadersWidth = 51;
             this.ProductsDGV.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             this.ProductsDGV.RowTemplate.Height = 25;
             this.ProductsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.ProductsDGV.Size = new System.Drawing.Size(435, 326);
+            this.ProductsDGV.Size = new System.Drawing.Size(497, 435);
             this.ProductsDGV.TabIndex = 12;
             this.ProductsDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ProductsDGV_CellContentClick);
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 516);
+            this.ClientSize = new System.Drawing.Size(1010, 688);
             this.Controls.Add(this.ProductsDGV);
             this.Controls.Add(this.deleteProductButton);
             this.Controls.Add(this.modifyProductButton);
@@ -209,6 +220,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Controls.Add(this.partsDGVlabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PartsDGV);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Main";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.PartsDGV)).EndInit();

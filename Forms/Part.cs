@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Diagnostics;
 namespace NHolbrook___IMS___Task1.Forms
 {
     public partial class Part : Form
@@ -21,12 +21,38 @@ namespace NHolbrook___IMS___Task1.Forms
             buttonSave.Enabled = false;
 
 
+
         }
 
+        public Part(Classes.Inhouse inPart)
+        {
+            InitializeComponent();
 
+            idInput.Text = inPart.PartID.ToString();
+            nameInput.Text = inPart.Name;
+            inventoryInput.Text = inPart.InStock.ToString();
+            priceInput.Text = inPart.Price.ToString();
+            maxInput.Text = inPart.Max.ToString();
+            minInput.Text = inPart.Min.ToString();
+            machineIDinput.Text = inPart.MachineID.ToString();
+        }
 
+        public Part(Classes.Outsourced outsourced)
+        {
+            InitializeComponent();
+
+            idInput.Text = outsourced.PartID.ToString(); ;
+            nameInput.Text = outsourced.Name;
+            inventoryInput.Text = outsourced.InStock.ToString(); ;
+            priceInput.Text = outsourced.Price.ToString(); ;
+            maxInput.Text = outsourced.Max.ToString(); ;
+            minInput.Text = outsourced.Min.ToString(); ;
+            machineIDinput.Text = outsourced.CompanyName;
+
+            radioOutsourced.Checked = true;
+        }
         public void SaveValidation(string s) {
-            if (s.All(char.IsDigit) == false)
+            if (s.All(char.IsDigit) && (machineID.Text == "Machine ID") == false)
             {
                 buttonSave.Enabled = false;
 
@@ -56,6 +82,7 @@ namespace NHolbrook___IMS___Task1.Forms
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Hide();
+            new Main().ShowDialog();
         }
 
         private void radioInHouse_CheckedChanged(object sender, EventArgs e)
@@ -67,7 +94,10 @@ namespace NHolbrook___IMS___Task1.Forms
             {
                 machineID.Text = "Machine ID";
 
-
+            }
+            else
+            {
+                machineIDinput.Clear();
             }
 
             //check to see if fields are blank
@@ -114,6 +144,12 @@ namespace NHolbrook___IMS___Task1.Forms
             if (radioOutsourced.Checked)
             {
                 machineID.Text = "Company Name";
+                // machineIDinput.Clear();
+
+            }
+            else {
+                machineIDinput.Clear();
+
             }
 
         }
@@ -260,12 +296,16 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            this.Hide();
+       
+        
+
             if (Classes.Globals.partIsNew)
             {
                 if (radioInHouse.Checked)
                 {
                     Classes.Inventory.addPart(new Classes.Inhouse(
-                                      //     12, //FIX THIS, need to get ID
+                                      (Classes.Inventory.AllParts.Count + 1),
                                       nameInput.Text,
                                       Convert.ToDouble(priceInput.Text),
                                       Convert.ToInt32(inventoryInput.Text),
@@ -274,15 +314,13 @@ namespace NHolbrook___IMS___Task1.Forms
                                       Convert.ToInt32(machineIDinput.Text)));
 
                 }
-                //public Part(int partID, string name, double price, int inStock, int min, int max)
-                //Inhouse(int partID, string name, double price, int inStock, int min, int max, int machineID)
-                // :base(partID, name, price, inStock, min, max)
+  
                 else
                 {
                     if (radioOutsourced.Checked)
                     {
                         Classes.Inventory.addPart(new Classes.Outsourced(
-                                          //     12, //FIX THIS, need to get ID
+                                          (Classes.Inventory.AllParts.Count + 1),
                                           nameInput.Text,
                                           Convert.ToDouble(priceInput.Text),
                                           Convert.ToInt32(inventoryInput.Text),
@@ -295,56 +333,108 @@ namespace NHolbrook___IMS___Task1.Forms
             } else
 
             {
-                if (radioInHouse.Checked)
+                //outsourced = true
+                bool isChangingType = Classes.Inventory.SourceChange(Convert.ToInt32(idInput.Text));
+                if (radioInHouse.Checked & isChangingType == true)
                 {
-                    Classes.Inventory.updatePart(Convert.ToInt32(idInput.Text), new Classes.Inhouse(
-                                      nameInput.Text,
-                                      Convert.ToDouble(priceInput.Text),
-                                      Convert.ToInt32(inventoryInput.Text),
-                                      Convert.ToInt32(minInput.Text),
-                                      Convert.ToInt32(maxInput.Text),
-                                      Convert.ToInt32(machineIDinput.Text)));
+                    int index = Convert.ToInt32(idInput.Text);
+                    //Classes.Inventory.deletePart(index);
+
+                    Classes.Inhouse replacementObject = new Classes.Inhouse(
+                                        Convert.ToInt32(idInput.Text),
+                                       nameInput.Text,
+                                       Convert.ToDouble(priceInput.Text),
+                                       Convert.ToInt32(inventoryInput.Text),
+                                       Convert.ToInt32(minInput.Text),
+                                       Convert.ToInt32(maxInput.Text),
+                                       Convert.ToInt32(machineIDinput.Text));
+
+
+                    Classes.Inventory.addPart(replacementObject, index );
+                                       
                   
-                    Classes.Inventory.changePartSource(Convert.ToInt32(idInput.Text), new Classes.Inhouse(
-                                      nameInput.Text,
-                                      Convert.ToDouble(priceInput.Text),
-                                      Convert.ToInt32(inventoryInput.Text),
-                                      Convert.ToInt32(minInput.Text),
-                                      Convert.ToInt32(maxInput.Text),
-                                      Convert.ToInt32(machineIDinput.Text)), true );
+                    //Classes.Inventory.changePartSource(Convert.ToInt32(idInput.Text), new Classes.Inhouse(
+                                      
+                    //                  nameInput.Text,
+                    //                  Convert.ToDouble(priceInput.Text),
+                    //                  Convert.ToInt32(inventoryInput.Text),
+                    //                  Convert.ToInt32(minInput.Text),
+                    //                  Convert.ToInt32(maxInput.Text),
+                    //                  Convert.ToInt32(machineIDinput.Text)),  );
                 }
 
-                else
+                else if (radioOutsourced.Checked & isChangingType == false){
+                    int index = Convert.ToInt32(idInput.Text);
+
+                    Classes.Outsourced replacementObject = new Classes.Outsourced(
+                                        Convert.ToInt32(idInput.Text),
+                                       nameInput.Text,
+                                       Convert.ToDouble(priceInput.Text),
+                                       Convert.ToInt32(inventoryInput.Text),
+                                       Convert.ToInt32(minInput.Text),
+                                       Convert.ToInt32(maxInput.Text),
+                                       machineIDinput.Text);
+                  //  Classes.Inventory.deletePart(Convert.ToInt32(idInput.Text));
+
+                    Classes.Inventory.addPart(replacementObject, index);
+                }
+                //Classes.Inventory.upd(Convert.ToInt32(idInput.Text), new Classes.Inhouse(
+                //                 (Classes.Inventory.AllParts.Count + 1),
+                //                 nameInput.Text,
+                //                 Convert.ToDouble(priceInput.Text),
+                //                 Convert.ToInt32(inventoryInput.Text),
+                //                 Convert.ToInt32(minInput.Text),
+                //                 Convert.ToInt32(maxInput.Text),
+                //                 Convert.ToInt32(machineIDinput.Text))
+                //                  );
+
+
+
                 {
                     if (radioOutsourced.Checked)
                     {
-                        Classes.Inventory.updatePart(Convert.ToInt32(idInput.Text), new Classes.Outsourced(
+                        Classes.Inventory.UpdateOutsourced(Convert.ToInt32(idInput.Text), new Classes.Outsourced(
+                                         (Classes.Inventory.AllParts.Count),
                                           nameInput.Text,
                                           Convert.ToDouble(priceInput.Text),
                                           Convert.ToInt32(inventoryInput.Text),
                                           Convert.ToInt32(minInput.Text),
                                           Convert.ToInt32(maxInput.Text),
-                                          machineIDinput.Text));
-                        Classes.Inventory.changePartSource(Convert.ToInt32(idInput.Text), new Classes.Outsourced(
-                                          nameInput.Text,
-                                          Convert.ToDouble(priceInput.Text),
-                                          Convert.ToInt32(inventoryInput.Text),
-                                          Convert.ToInt32(minInput.Text),
-                                          Convert.ToInt32(maxInput.Text),
-                                          machineIDinput.Text), false);
+                                          machineIDinput.Text)
+                                          );
+                        //Classes.Inventory.changePartSource(Convert.ToInt32(idInput.Text), new Classes.Outsourced(
+                        //                  (Classes.Inventory.AllParts.Count + 1),
+                        //                  nameInput.Text,
+                        //                  Convert.ToDouble(priceInput.Text),
+                        //                  Convert.ToInt32(inventoryInput.Text),
+                        //                  Convert.ToInt32(minInput.Text),
+                        //                  Convert.ToInt32(maxInput.Text),
+                        //                  machineIDinput.Text));
+//                        Debug.WriteLine(machineIDinput.Text);
+                        
+                   
                     }
                 }
 
-
+                
 
             }
 
-            
-        this.Close();
+
+
+            Main main = new Main();
+            main.Refresh();
+            main.Show();
+
 
         }
 
         private void idInput_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Part_Load(object sender, EventArgs e)
         {
 
         }

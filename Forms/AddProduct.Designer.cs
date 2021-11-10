@@ -186,6 +186,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.allCandidatePartsDGV.MultiSelect = false;
             this.allCandidatePartsDGV.Name = "allCandidatePartsDGV";
             this.allCandidatePartsDGV.RowHeadersVisible = false;
+            this.allCandidatePartsDGV.RowHeadersWidth = 51;
             this.allCandidatePartsDGV.RowTemplate.Height = 25;
             this.allCandidatePartsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.allCandidatePartsDGV.Size = new System.Drawing.Size(621, 207);
@@ -213,6 +214,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.associatedPartsDGV.Name = "associatedPartsDGV";
             this.associatedPartsDGV.ReadOnly = true;
             this.associatedPartsDGV.RowHeadersVisible = false;
+            this.associatedPartsDGV.RowHeadersWidth = 51;
             this.associatedPartsDGV.RowTemplate.Height = 25;
             this.associatedPartsDGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.associatedPartsDGV.Size = new System.Drawing.Size(621, 207);
@@ -256,6 +258,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.cancelButton.TabIndex = 20;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // AddProduct
             // 
@@ -285,6 +288,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Controls.Add(this.productTitleLabel);
             this.Name = "AddProduct";
             this.Text = "AddProduct";
+            this.Load += new System.EventHandler(this.AddProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.allCandidatePartsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.associatedPartsDGV)).EndInit();
             this.ResumeLayout(false);
