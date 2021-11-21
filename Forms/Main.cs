@@ -184,14 +184,16 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void delPart_Click(object sender, EventArgs e)
         {
-            try {
+            try
+            {
 
-                
+
                 DataGridViewRow selectedRow = PartsDGV.SelectedRows[0];
                 var toDelete = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
                 Classes.Part partToDelete = Classes.Inventory.lookupPart(toDelete);
 
-               if (MessageBox.Show($"are you sure you want to delete {partToDelete.Name}?" , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes){
+                if (MessageBox.Show($"are you sure you want to delete {partToDelete.Name}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
                     Classes.Inventory.deletePart(partToDelete);
                     // probably a hack -  DGV index errors after deleting a row so im rebuilding the DGV to reflect the changes
                     PartsDGV.DataSource = null;
@@ -199,14 +201,15 @@ namespace NHolbrook___IMS___Task1.Forms
 
                     PartsDGV.Refresh();
                 }
-              
-               
-            } catch(ArgumentOutOfRangeException)
+
+
+            }
+            catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Please select something to delete.");
                 return;
             }
-            
+
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -244,15 +247,15 @@ namespace NHolbrook___IMS___Task1.Forms
                 Classes.Product product = Classes.Inventory.lookupProduct(productID);
                 // Debug.WriteLine(part);
                 Forms.AddProduct productForm = new();
-                productForm.IDinput.Text = Convert.ToString(product.ProductID) ;
+                productForm.IDinput.Text = Convert.ToString(product.ProductID);
                 productForm.nameInput.Text = product.Name;
                 productForm.inventoryInput.Text = Convert.ToString(product.InStock);
                 productForm.priceInput.Text = Convert.ToString(product.Price);
                 productForm.maxInput.Text = Convert.ToString(product.Max);
                 productForm.minInput.Text = Convert.ToString(product.Min);
-              //  Debug.WriteLine(productForm.IDinput);
-               // Classes.Globals.associatedPartsDGVIndex = Classes.Inventory.Products.IndexOf(product);
-              //  Debug.WriteLine("Index is " + Classes.Globals.associatedPartsDGVIndex);
+                //  Debug.WriteLine(productForm.IDinput);
+                // Classes.Globals.associatedPartsDGVIndex = Classes.Inventory.Products.IndexOf(product);
+                //  Debug.WriteLine("Index is " + Classes.Globals.associatedPartsDGVIndex);
                 Forms.AddProduct.modifyOrNew = 1;
 
 
@@ -266,7 +269,7 @@ namespace NHolbrook___IMS___Task1.Forms
                 //    }
                 //}
 
-               // Debug.WriteLine("PRODUCT ID IS " + productForm.IDinput.Text);
+                // Debug.WriteLine("PRODUCT ID IS " + productForm.IDinput.Text);
 
                 productForm.ShowDialog();
                 this.Close();
@@ -281,6 +284,65 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void deleteProductButton_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e) //Parts Search Button
+        {
+            PartsDGV.ClearSelection();
+            bool result = false;
+        
+            for (int i = 0; i < Classes.Inventory.AllParts.Count; i++)
+
+            {
+               
+                if (Classes.Inventory.AllParts[i].Name.ToUpper().Contains(searchInput.Text.ToUpper())) //should this iterate over the DGV instead? https://www.youtube.com/watch?v=JL30gSE3WaQ
+                {
+                    PartsDGV.Rows[i].Selected = true;
+                    result = true;
+                }
+
+               
+                
+            }
+
+            if (!result)
+            {
+                MessageBox.Show("Search returned no results.");
+            }
+
+
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void partsSearchButton_Click(object sender, EventArgs e)
+        {
+            ProductsDGV.ClearSelection();
+            bool result = false;
+
+            for (int i = 0; i < Classes.Inventory.Products.Count; i++)
+
+            {
+
+                if (Classes.Inventory.Products[i].Name.ToUpper().Contains(prodSearchInput.Text.ToUpper())) 
+                {
+                    ProductsDGV.Rows[i].Selected = true;
+                    result = true;
+                }
+
+
+
+            }
+
+            if (!result)
+            {
+                MessageBox.Show("Search returned no results.");
+            }
 
         }
     }

@@ -111,59 +111,75 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            Classes.Product updatedProduct = new Classes.Product(Convert.ToInt32(IDinput.Text), nameInput.Text, Convert.ToDouble(priceInput.Text), Convert.ToInt32(inventoryInput.Text), Convert.ToInt32(minInput.Text), Convert.ToInt32(maxInput.Text));
-
-            foreach( Classes.Part part in DGVAssoParts) {
-                updatedProduct.AssociatedParts.Add(part);
-            }
-            Classes.Product productObject = Classes.Inventory.lookupProduct(Convert.ToInt32(IDinput.Text));
-            foreach (Classes.Part part in DGVAssoParts)
+            if (associatedPartsDGV.RowCount == 0)
             {
-                productObject.AssociatedParts.Add(part);
-            }
-            this.Hide();
-                if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text))
-            {
-                MessageBox.Show("Your minimum exceeds your maximum.");
-            }
-            else if (modifyOrNew == 1) //modify
-            {
-                foreach (var each in Classes.Inventory.Products)
-                { 
-                    if (each.ProductID == productID) 
-                    {
-                        each.Name = nameInput.Text;
-                        each.Price = Convert.ToDouble(priceInput.Text);
-                        each.InStock = Convert.ToInt32(inventoryInput.Text);
-                        each.Min = Convert.ToInt32(minInput.Text);
-                        each.Max = Convert.ToInt32(maxInput.Text);
-                        
-
-                    }
-                }
-                this.Hide();
-
-                Main main = new Main();
-                main.ShowDialog();
+                MessageBox.Show("Product must contain atleast one associated part.");
                 return;
-                
             }
 
-
+            else if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text)) 
+            {
+                MessageBox.Show("Max cannot be less than Min");
+                return;
+            }
+            
+          
             else
             {
-                Classes.Inventory.addProduct(new Classes.Product(
-                                  nameInput.Text,
-                                  Convert.ToDouble(priceInput.Text),
-                                  Convert.ToInt32(inventoryInput.Text),
-                                  Convert.ToInt32(minInput.Text),
-                                  Convert.ToInt32(maxInput.Text)));
+                Classes.Product updatedProduct = new Classes.Product(Convert.ToInt32(IDinput.Text), nameInput.Text, Convert.ToDouble(priceInput.Text), Convert.ToInt32(inventoryInput.Text), Convert.ToInt32(minInput.Text), Convert.ToInt32(maxInput.Text));
 
-                this.Close();
+                foreach (Classes.Part part in DGVAssoParts)
+                {
+                    updatedProduct.AssociatedParts.Add(part);
+                }
+                Classes.Product productObject = Classes.Inventory.lookupProduct(Convert.ToInt32(IDinput.Text));
+                foreach (Classes.Part part in DGVAssoParts)
+                {
+                    productObject.AssociatedParts.Add(part);
+                }
+                this.Hide();
+                if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text))
+                {
+                    MessageBox.Show("Your minimum exceeds your maximum.");
+                }
+                else if (modifyOrNew == 1) //modify
+                {
+                    foreach (var each in Classes.Inventory.Products)
+                    {
+                        if (each.ProductID == productID)
+                        {
+                            each.Name = nameInput.Text;
+                            each.Price = Convert.ToDouble(priceInput.Text);
+                            each.InStock = Convert.ToInt32(inventoryInput.Text);
+                            each.Min = Convert.ToInt32(minInput.Text);
+                            each.Max = Convert.ToInt32(maxInput.Text);
 
-                Main main = new Main();
 
-          
+                        }
+                    }
+                    this.Hide();
+
+                    Main main = new Main();
+                    main.ShowDialog();
+                    return;
+
+                }
+
+
+                else
+                {
+                    Classes.Inventory.addProduct(new Classes.Product(
+                                      nameInput.Text,
+                                      Convert.ToDouble(priceInput.Text),
+                                      Convert.ToInt32(inventoryInput.Text),
+                                      Convert.ToInt32(minInput.Text),
+                                      Convert.ToInt32(maxInput.Text)));
+                    this.Close();
+
+                    Main main = new Main();
+
+
+                }
             }
         }
 
