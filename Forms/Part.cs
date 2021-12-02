@@ -87,9 +87,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void radioInHouse_CheckedChanged(object sender, EventArgs e)
         {
-            // set value = 1 
-            // if value == 1 stuff.hide and otherstuff.show
-            // else stuff.show and otherstuff.hide
+    
             if (radioInHouse.Checked)
             {
                 machineID.Text = "Machine ID";
@@ -144,7 +142,6 @@ namespace NHolbrook___IMS___Task1.Forms
             if (radioOutsourced.Checked)
             {
                 machineID.Text = "Company Name";
-                // machineIDinput.Clear();
 
             }
             else {
@@ -172,13 +169,16 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void inventoryInput_TextChanged(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(inventoryInput.Text))
-            {
-                inventoryInput.BackColor = Color.Coral;
-                buttonSave.Enabled = false;
+            //Debug.WriteLine(Convert.ToInt32(inventoryInput.Text));
+            //if (String.IsNullOrWhiteSpace(inventoryInput.Text))
+            //{
+            //    inventoryInput.BackColor = Color.Coral;
+            //    buttonSave.Enabled = false;
 
-            }
-            else if (inventoryInput.Text.All(char.IsDigit) == false)
+            //}
+            
+            
+            if (inventoryInput.Text.All(char.IsDigit) == false)
             {
                 buttonSave.Enabled = false;
                 inventoryInput.BackColor = Color.Coral;
@@ -202,7 +202,6 @@ namespace NHolbrook___IMS___Task1.Forms
                 buttonSave.Enabled = false;
 
             }
-            //else if (priceInput.Text.All(char.IsDigit) == false)
             else if (double.TryParse(priceInput.Text, out double x))
             {
                 buttonSave.Enabled = true;
@@ -250,6 +249,10 @@ namespace NHolbrook___IMS___Task1.Forms
             }
             else if (minInput.Text.All(char.IsDigit) == false)
             {
+                buttonSave.Enabled = false;
+                minInput.BackColor = Color.Coral;
+
+            }else if (Convert.ToInt32(minInput.Text) > Convert.ToInt32(maxInput.Text)){
                 buttonSave.Enabled = false;
                 minInput.BackColor = Color.Coral;
             }
@@ -333,12 +336,10 @@ namespace NHolbrook___IMS___Task1.Forms
             } else
 
             {
-                //outsourced = true
                 bool isChangingType = Classes.Inventory.SourceChange(Convert.ToInt32(idInput.Text));
                 if (radioInHouse.Checked & isChangingType == true)
                 {
                     int index = Convert.ToInt32(idInput.Text);
-                    //Classes.Inventory.deletePart(index);
 
                     Classes.Inhouse replacementObject = new Classes.Inhouse(
                                         Convert.ToInt32(idInput.Text),
@@ -352,15 +353,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
                     Classes.Inventory.addPart(replacementObject, index );
                                        
-                  
-                    //Classes.Inventory.changePartSource(Convert.ToInt32(idInput.Text), new Classes.Inhouse(
-                                      
-                    //                  nameInput.Text,
-                    //                  Convert.ToDouble(priceInput.Text),
-                    //                  Convert.ToInt32(inventoryInput.Text),
-                    //                  Convert.ToInt32(minInput.Text),
-                    //                  Convert.ToInt32(maxInput.Text),
-                    //                  Convert.ToInt32(machineIDinput.Text)),  );
+           
                 }
 
                 else if (radioOutsourced.Checked & isChangingType == false){
@@ -374,19 +367,10 @@ namespace NHolbrook___IMS___Task1.Forms
                                        Convert.ToInt32(minInput.Text),
                                        Convert.ToInt32(maxInput.Text),
                                        machineIDinput.Text);
-                  //  Classes.Inventory.deletePart(Convert.ToInt32(idInput.Text));
 
                     Classes.Inventory.addPart(replacementObject, index);
                 }
-                //Classes.Inventory.upd(Convert.ToInt32(idInput.Text), new Classes.Inhouse(
-                //                 (Classes.Inventory.AllParts.Count + 1),
-                //                 nameInput.Text,
-                //                 Convert.ToDouble(priceInput.Text),
-                //                 Convert.ToInt32(inventoryInput.Text),
-                //                 Convert.ToInt32(minInput.Text),
-                //                 Convert.ToInt32(maxInput.Text),
-                //                 Convert.ToInt32(machineIDinput.Text))
-                //                  );
+              
 
 
 
@@ -402,16 +386,7 @@ namespace NHolbrook___IMS___Task1.Forms
                                           Convert.ToInt32(maxInput.Text),
                                           machineIDinput.Text)
                                           );
-                        //Classes.Inventory.changePartSource(Convert.ToInt32(idInput.Text), new Classes.Outsourced(
-                        //                  (Classes.Inventory.AllParts.Count + 1),
-                        //                  nameInput.Text,
-                        //                  Convert.ToDouble(priceInput.Text),
-                        //                  Convert.ToInt32(inventoryInput.Text),
-                        //                  Convert.ToInt32(minInput.Text),
-                        //                  Convert.ToInt32(maxInput.Text),
-                        //                  machineIDinput.Text));
-//                        Debug.WriteLine(machineIDinput.Text);
-                        
+          
                    
                     }
                 }
@@ -420,11 +395,26 @@ namespace NHolbrook___IMS___Task1.Forms
 
             }
 
+            if (Convert.ToInt32(minInput.Text) > Convert.ToInt32(maxInput.Text))
+            {
+                MessageBox.Show("Error: Minimum cannot exceed maximum");
+                this.Show();
+            }
+            else if (Convert.ToInt32(inventoryInput.Text) < Convert.ToInt32(minInput.Text))
+            {
+                MessageBox.Show("Inventory value must be between Min and Max values");
+                this.Show();
+            }
 
 
-            Main main = new Main();
-            main.Refresh();
-            main.Show();
+            else
+            {
+                Main main = new Main();
+                main.Refresh();
+                main.Show();
+            }
+
+               
 
 
         }

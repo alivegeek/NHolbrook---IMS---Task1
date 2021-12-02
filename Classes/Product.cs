@@ -24,7 +24,6 @@ namespace NHolbrook___IMS___Task1.Classes
 
         public int Max { get; set; }
 
-      //  public BindingList<Part> associatedParts { get; set; }
 
 
         //Constructors
@@ -34,14 +33,30 @@ namespace NHolbrook___IMS___Task1.Classes
 
         }
 
-        //public Product(int productID, string name, double price, int inStock, int min, int max)
-        //    : this(productID, name, price, inStock, min, max)
-
+ 
         public void AddAssociatedPart(Part part)
         {
             AssociatedParts.Add(part);
         }
 
+        public bool removeAssociatedPart(int id)
+        {
+            foreach (Part ap in AssociatedParts)
+            {
+                if (ap.PartID == id)
+                {
+                    AssociatedParts.Remove(ap);
+                }
+             return true;
+
+
+
+
+
+
+            }
+            return false;
+        }
 
 
 

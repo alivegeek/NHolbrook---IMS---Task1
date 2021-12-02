@@ -43,15 +43,47 @@ namespace NHolbrook___IMS___Task1.Classes
             Products.Add(product);
         }
 
-        public static bool removeProduct(int productID)
+
+        
+        public static bool removeProduct(int id)
         {
-            return true; //BANDAID! Fix later
+            {
+                Product product = lookupProduct(id);
+                try
+                {
+                    Products.Remove(product);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
 
         }
 
         public static void updateProduct(int productID, Product updatedProduct)
         {
+            foreach (Product p in Products)
+            {
+                if (p.ProductID == productID)
+                {
+                    removeProduct(p.ProductID);
+                    addProduct(updatedProduct);
+                }
+            }
+        }
 
+        public static void updatePart(int id, Part part)
+        {
+            foreach( Part p in AllParts)
+            {
+                if(p.PartID == id)
+                {
+                    deletePart(p);
+                    addPart(part);
+                }
+            }
         }
 
         public static void addPart(Part part)
@@ -162,31 +194,7 @@ namespace NHolbrook___IMS___Task1.Classes
                 }
         }
 
-        //public static void UpdateToInhouse(int partID, Inhouse part)
-        //{
-        //    for (int i = 0; i < AllParts.Count; i++)
-        //    {
-        //        if (AllParts[i].GetType() == typeof(Classes.Outsourced))
-        //        {
-        //            AllParts.RemoveAt(i);
-        //            Outsourced newPart = (Outsourced)AllParts[i];
-
-        //            part = (Inhouse)AllParts[i];
-
-
-        //            //if (newPart.PartID == partID)
-        //            //{
-
-        //            //    newPart.Name = outPart.Name;
-        //            //    newPart.InStock = outPart.InStock;
-        //            //    newPart.Price = outPart.Price;
-        //            //    newPart.Min = outPart.Min;
-        //            //    newPart.Max = outPart.Max;
-        //            //    newPart.MachineID = ID;
-        //            //}
-                
-        //    }
-        //}
+       
         public static bool SourceChange(int partID)
         {
             Part partToCheck = lookupPart(partID);
@@ -199,62 +207,8 @@ namespace NHolbrook___IMS___Task1.Classes
                 return false;
             }
         }
-        //public static void updatePartOutsourced(int partID, Part part)
-        //{
-        //    foreach (Part each in Inventory.AllParts)
-        //    {
-        //        if (each.PartID == partID)
-        //        {
-        //            each.InStock = part.InStock;
-        //            each.CompanyName = part.CompanyName;
-        //            each.Max = part.Max;
-        //            each.Min = part.Min;
-        //            each.Name = part.Name;
-        //            each.Price = part.Price;
+        
 
-        //        }
-        //    }
-        //}
-        //public static void changePartSource(int partID, Part part, bool inhouse) //true for inhouse false for outsourced
-        //{
-        //    if (inhouse == true)
-        //    {
-        //        foreach (Part each in Inventory.AllParts)
-
-        //        {
-        //            if (each.PartID == partID)
-        //            {
-        //                part.CompanyName = null;
-        //                Debug.WriteLine("Nulling Name!!!");
-        //             /*   Forms.Main main = new Forms.Main();
-        //                main.ShowDialog();*/
-        //            }
-
-
-        //        }
-        //    }
-
-
-        // else
-        //        {
-        //            Debug.WriteLine("Nulling Machine ID Field");
-        //            foreach (Part each in Inventory.AllParts)
-
-        //            {
-        //                if (each.PartID == partID)
-        //                {
-        //                    Debug.WriteLine("Nulling Machine ID Field");
-
-        //                    part.MachineID = null;
-        //                }
-
-        //            }
-        //        }
-        //        }
-        //    }
-        //}
-
-        public static int CurrentPartIndex { get; set; }
 
     }
 

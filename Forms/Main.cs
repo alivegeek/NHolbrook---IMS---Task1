@@ -253,23 +253,11 @@ namespace NHolbrook___IMS___Task1.Forms
                 productForm.priceInput.Text = Convert.ToString(product.Price);
                 productForm.maxInput.Text = Convert.ToString(product.Max);
                 productForm.minInput.Text = Convert.ToString(product.Min);
-                //  Debug.WriteLine(productForm.IDinput);
-                // Classes.Globals.associatedPartsDGVIndex = Classes.Inventory.Products.IndexOf(product);
-                //  Debug.WriteLine("Index is " + Classes.Globals.associatedPartsDGVIndex);
+
                 Forms.AddProduct.modifyOrNew = 1;
 
 
-                //foreach (Classes.Product each in Classes.Inventory.Products)
-                //{
-                //    Debug.WriteLine(each.Name);
-                //    foreach (Classes.Part item in each.AssociatedParts)
-                //    {
-                //        Debug.WriteLine(item.Name);
-
-                //    }
-                //}
-
-                // Debug.WriteLine("PRODUCT ID IS " + productForm.IDinput.Text);
+       
 
                 productForm.ShowDialog();
                 this.Close();
@@ -284,9 +272,38 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void deleteProductButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+
+
+                DataGridViewRow selectedRow = ProductsDGV.SelectedRows[0];
+                var toDelete = Convert.ToInt32(selectedRow.Cells["ProductID"].Value);
+                Classes.Product prodToDelete = Classes.Inventory.lookupProduct (toDelete);
+                Debug.WriteLine(prodToDelete.AssociatedParts.Count);
+                if (prodToDelete.AssociatedParts.Count() > 0)
+                {
+                    MessageBox.Show("Cannot delete a product with associated Parts. Please remove them first.");
+                    
+                    return;
+                }
+                else if (MessageBox.Show($"are you sure you want to delete {prodToDelete.Name}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Classes.Inventory.removeProduct(toDelete);
+                    PartsDGV.DataSource = null;
+                    PartsDGV.DataSource = Classes.Inventory.AllParts;
+
+                    PartsDGV.Refresh();
+                }
+
+
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                MessageBox.Show("Please select something to delete.");
+                return;
+            }
 
         }
-
         private void button1_Click(object sender, EventArgs e) //Parts Search Button
         {
             PartsDGV.ClearSelection();

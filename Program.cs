@@ -17,7 +17,7 @@ namespace NHolbrook___IMS___Task1
         static void Main()
         {
             //populate sample data here
-            Classes.Inhouse part = new Classes.Inhouse(Classes.Inventory.GetNextPartID(), "Power Converter", 100, 1, 1, 255, 22); ;
+            Classes.Inhouse part = new Classes.Inhouse(Classes.Inventory.GetNextPartID(), "Power Converter", 100, 2, 1, 255, 22); ;
             Classes.Outsourced part2 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(),"Warp core ejector coil", 1024, 1, 10, 25, "Academy surplus");
             Classes.Outsourced part3 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "Litigating Ligature", 53.09, 1, 2, 8, "Johnnie Cochran Supply");
             Classes.Outsourced part4 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "Redudant Rotating Oscillator", 3.50, 1, 10, 25, "redundundundancy inc.");

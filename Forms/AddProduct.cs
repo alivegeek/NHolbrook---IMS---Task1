@@ -16,6 +16,7 @@ namespace NHolbrook___IMS___Task1.Forms
     {
         public static int modifyOrNew = 0;
         public static int productID;
+        private static List<Classes.Part> holdingAreaParts = new List<Classes.Part>();
         //  List<int> associatedPartIDs = new  List<int>();
         private static BindingList<Classes.Part> DGVAssoParts = new BindingList<Classes.Part>();
         public AddProduct()
@@ -296,30 +297,9 @@ namespace NHolbrook___IMS___Task1.Forms
                 var partID = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
             Classes.Part part = Classes.Inventory.lookupPart(partID);
             DGVAssoParts.Add(part);
-            //prodToAsso.associatedParts.Add(part);
-                
-           //productObjectHelper().AssociatedParts.Add(partID);
+            holdingAreaParts.Add(part);
 
-
-                //var partid = (convert.toint32(selectedrow.cells["partid"].value) - 1);
-                //classes.part parttoadd = classes.inventory.lookuppart(partid);
-                //classes.product producttoassociate = classes.inventory.lookupproduct(partid);
-                //debug.writeline(partid);
-
-                //bindinglist<part> allparts = new bindinglist<part>();
-                //debug.writeline(producttoassociate.name);
-                //producttoassociate.associatedparts.add(partid);
-                //classes.inventory.products[convert.toint32(idinput.text)].associatedparts.add(parttoadd);
-
-
-
-            
-            //catch (ArgumentOutOfRangeException)
-            //{
-            //    MessageBox.Show("Please select something to add");
-            //    return;
-            //}
-
+     
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -355,7 +335,18 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
+            foreach(Classes.Part part in holdingAreaParts)
+            {    
+                if (DGVAssoParts.Contains(part)){
+                    DGVAssoParts.Remove(part);
+                }
+            }
             this.Hide();
+            Main main = new Main();
+
+            main.ShowDialog();
+
+
         }
 
         private  Classes.Part lookupPart(int partID)
