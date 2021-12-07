@@ -13,6 +13,9 @@ namespace NHolbrook___IMS___Task1.Forms
 {
     public partial class Main : Form
     {
+
+        public static bool sourcedType { get; set; }
+
         public void formatDGV(DataGridView dgv) //not neccessary? Could set in properties GUI?
         {
             dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -28,12 +31,10 @@ namespace NHolbrook___IMS___Task1.Forms
             PartsDGV.DataSource = Classes.Inventory.AllParts;
             formatDGV(ProductsDGV);
             ProductsDGV.DataSource = Classes.Inventory.Products;
-
         }
 
 
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+            private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
 
@@ -60,21 +61,21 @@ namespace NHolbrook___IMS___Task1.Forms
         }
 
 
-        private void buttonModifyPart_Click(object sender, EventArgs e)
-        {
-            this.Hide();
+        //private void buttonModifyPart_Click(object sender, EventArgs e)
+        //{
+        //    this.Hide();
 
-            if (PartsDGV.CurrentRow.DataBoundItem.GetType() == typeof(Classes.Inhouse))
-            {
-                Classes.Inhouse inhouse = (Classes.Inhouse)PartsDGV.CurrentRow.DataBoundItem;
-                new Part(inhouse).ShowDialog();
-            }
-            else
-            {
-                Classes.Outsourced outPart = (Classes.Outsourced)PartsDGV.CurrentRow.DataBoundItem;
-                new Part().ShowDialog();
-            }
-        }
+        //    if (PartsDGV.CurrentRow.DataBoundItem.GetType() == typeof(Classes.Inhouse))
+        //    {
+        //        Classes.Inhouse inhouse = (Classes.Inhouse)PartsDGV.CurrentRow.DataBoundItem;
+        //        new Part(inhouse).ShowDialog();
+        //    }
+        //    else
+        //    {
+        //        Classes.Outsourced outPart = (Classes.Outsourced)PartsDGV.CurrentRow.DataBoundItem;
+        //        new Part().ShowDialog();
+        //    }
+        //}
 
 
 
@@ -98,9 +99,28 @@ namespace NHolbrook___IMS___Task1.Forms
                 partForm.minInput.Text = Convert.ToString(part.Min);
                 partForm.machineIDinput.Text = Convert.ToString(part.MachineID);
 
+                if (Classes.Inventory.SourceChange(part.PartID) is true) //TRUE FOR OUTSOURCED
+                {
+                    partForm.machineIDinput.Text = part.CompanyName;
+                }
 
-                partForm.ShowDialog();
+                    partForm.ShowDialog();
+              
 
+                //if (selectedRow.Cells["PartID"].Value is null)
+                //{
+                //    partForm.machineID.Text = "Company Name";
+                //}
+                //else if (Convert.ToInt32(selectedRow.Cells["PartID"].Value) == 0)
+                //{
+                //    partForm.machineID.Text = "Company Name";
+                //    Debug.WriteLine("This is it!");
+                //}
+                //else if (selectedRow.Cells["PartID"].Value.Equals("0"))
+                //{
+                //    partForm.machineID.Text = "Company Name";
+
+                //}
                 return;
             }
             catch (ArgumentOutOfRangeException)

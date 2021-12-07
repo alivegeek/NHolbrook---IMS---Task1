@@ -282,14 +282,14 @@ namespace NHolbrook___IMS___Task1.Forms
         #endregion
 
         private System.Windows.Forms.Label partLabel;
-        private System.Windows.Forms.RadioButton radioInHouse;
-        private System.Windows.Forms.RadioButton radioOutsourced;
+        public System.Windows.Forms.RadioButton radioInHouse;
+        public System.Windows.Forms.RadioButton radioOutsourced;
         private System.Windows.Forms.Label labelID;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.Label labelInventory;
         private System.Windows.Forms.Label labelPrice;
         private System.Windows.Forms.Label labelMax;
-        private System.Windows.Forms.Label machineID;
+        public System.Windows.Forms.Label machineID;
         private System.Windows.Forms.Label labelMin;
         public System.Windows.Forms.TextBox idInput;
         public System.Windows.Forms.TextBox nameInput;

@@ -57,6 +57,7 @@ namespace NHolbrook___IMS___Task1.Classes
             Min = min;
             Max = max;
         }
+
         //Note to self - need virtual method? Read this later https://www.c-sharpcorner.com/UploadFile/3d39b4/virtual-method-in-C-Sharp/
         // public virtual int GetMachineID() { return 0; }
         // public virtual string GetCompanyName() { return ""; }

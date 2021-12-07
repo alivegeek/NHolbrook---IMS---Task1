@@ -12,14 +12,14 @@ namespace NHolbrook___IMS___Task1.Forms
 {
     public partial class Part : Form
     {
+
         public Part()
         {
-
+            
             InitializeComponent();
 
-
+         
             buttonSave.Enabled = false;
-
 
 
         }
@@ -315,7 +315,7 @@ namespace NHolbrook___IMS___Task1.Forms
                                       Convert.ToInt32(minInput.Text),
                                       Convert.ToInt32(maxInput.Text),
                                       Convert.ToInt32(machineIDinput.Text)));
-
+                                      
                 }
   
                 else
@@ -386,6 +386,7 @@ namespace NHolbrook___IMS___Task1.Forms
                                           Convert.ToInt32(maxInput.Text),
                                           machineIDinput.Text)
                                           );
+
           
                    
                     }
@@ -426,7 +427,14 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void Part_Load(object sender, EventArgs e)
         {
-
+            if (Classes.Inventory.SourceChange(Convert.ToInt32(idInput.Text)) is true) //TRUE FOR OUTSOURCED
+            {
+                radioOutsourced.Checked = true;
+                machineID.Text = "Company Name";
+                
+                machineIDinput.BackColor = Color.White;
+                
+            }
         }
     }
 }
