@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Collections;
-using System.Diagnostics;
+using NHolbrook___IMS___Task1.Classes;
+
 namespace NHolbrook___IMS___Task1.Forms
 
 {
@@ -19,6 +17,7 @@ namespace NHolbrook___IMS___Task1.Forms
         private static List<Classes.Part> holdingAreaParts = new List<Classes.Part>();
         //  List<int> associatedPartIDs = new  List<int>();
         private static BindingList<Classes.Part> DGVAssoParts = new BindingList<Classes.Part>();
+
         public AddProduct()
 
         {
@@ -26,8 +25,9 @@ namespace NHolbrook___IMS___Task1.Forms
             InitializeComponent();
 
 
+            inventoryInput.Controls[0].Visible = false;
 
-            allCandidatePartsDGV.DataSource = Classes.Inventory.AllParts;
+            allCandidatePartsDGV.DataSource = Inventory.AllParts;
             associatedPartsDGV.DataSource = DGVAssoParts;
 
 
@@ -54,7 +54,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
 
         }
-    
+
 
         public void SaveValidation(string s)
         {
@@ -69,7 +69,7 @@ namespace NHolbrook___IMS___Task1.Forms
                String.IsNullOrWhiteSpace(inventoryInput.Text) == false ||
                 String.IsNullOrWhiteSpace(priceInput.Text) == false ||
                 String.IsNullOrWhiteSpace(maxInput.Text) == false ||
-                String.IsNullOrWhiteSpace(minInput.Text) == false) 
+                String.IsNullOrWhiteSpace(minInput.Text) == false)
 
             {
 
@@ -82,7 +82,7 @@ namespace NHolbrook___IMS___Task1.Forms
             {
                 buttonSave.Enabled = false;
             }
-          
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -112,31 +112,40 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+
+            if (Convert.ToInt32(inventoryInput.Value) < Convert.ToInt32(minInput.Text) || Convert.ToInt32(inventoryInput.Value) > Convert.ToInt32(maxInput.Text))
+
+            {
+                buttonSave.Enabled = false;
+                MessageBox.Show("Inventory must be between Min and Max values.");
+                return;
+            }
+
             if (associatedPartsDGV.RowCount == 0)
             {
                 MessageBox.Show("Product must contain atleast one associated part.");
                 return;
             }
 
-            else if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text)) 
+            else if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text))
             {
                 MessageBox.Show("Max cannot be less than Min");
                 return;
             }
-            
-          
+
+
             else
             {
-                Classes.Product updatedProduct = new Classes.Product(Convert.ToInt32(IDinput.Text), nameInput.Text, Convert.ToDouble(priceInput.Text), Convert.ToInt32(inventoryInput.Text), Convert.ToInt32(minInput.Text), Convert.ToInt32(maxInput.Text));
+                Product updatedProduct = new Product(Convert.ToInt32(IDinput.Text), nameInput.Text, Convert.ToDouble(priceInput.Text), Convert.ToInt32(inventoryInput.Text), Convert.ToInt32(minInput.Text), Convert.ToInt32(maxInput.Text));
 
                 foreach (Classes.Part part in DGVAssoParts)
                 {
                     updatedProduct.AssociatedParts.Add(part);
                 }
-                Classes.Product productObject = Classes.Inventory.lookupProduct(Convert.ToInt32(IDinput.Text));
+                //   Classes.Product productObject = Classes.Inventory.lookupProduct(Convert.ToInt32(IDinput.Text));
                 foreach (Classes.Part part in DGVAssoParts)
                 {
-                    productObject.AssociatedParts.Add(part);
+                    updatedProduct.AssociatedParts.Add(part);
                 }
                 this.Hide();
                 if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text))
@@ -145,7 +154,7 @@ namespace NHolbrook___IMS___Task1.Forms
                 }
                 else if (modifyOrNew == 1) //modify
                 {
-                    foreach (var each in Classes.Inventory.Products)
+                    foreach (var each in Inventory.Products)
                     {
                         if (each.ProductID == productID)
                         {
@@ -169,7 +178,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
                 else
                 {
-                    Classes.Inventory.addProduct(new Classes.Product(
+                    Inventory.addProduct(new Product(
                                       nameInput.Text,
                                       Convert.ToDouble(priceInput.Text),
                                       Convert.ToInt32(inventoryInput.Text),
@@ -184,31 +193,40 @@ namespace NHolbrook___IMS___Task1.Forms
             }
         }
 
-        private void inventoryInput_TextChanged(object sender, EventArgs e)
-        {
-            SaveValidation(Convert.ToString(inventoryInput));
-            if (String.IsNullOrWhiteSpace(inventoryInput.Text))
-            {
-                inventoryInput.BackColor = Color.Coral;
-                buttonSave.Enabled = false;
-
-            }
-            else if (inventoryInput.Text.All(char.IsDigit) == false)
-            {
-                buttonSave.Enabled = false;
-                inventoryInput.BackColor = Color.Coral;
-            }
 
 
-
-            else
-            {
-                inventoryInput.BackColor = Color.White;
-            }
+        //private void inventoryInput_TextChanged(object sender, EventArgs e)
+        //{
 
 
+        //    SaveValidation(Convert.ToString(inventoryInput));
 
-        }
+        //    if (String.IsNullOrWhiteSpace(inventoryInput.Text))
+        //    {
+        //        inventoryInput.BackColor = Color.Coral;
+        //        buttonSave.Enabled = false;
+
+        //    }
+        //    else if (inventoryInput.Text.All(char.IsDigit) == false)
+        //    {
+        //        buttonSave.Enabled = false;
+        //        inventoryInput.BackColor = Color.Coral;
+        //    }
+
+        //    else if (Convert.ToInt32(inventoryInput.Value) > Convert.ToInt32(minInput.Text))
+        //    {
+        //        inventoryInput.BackColor = Color.White;
+        //        buttonSave.Enabled = true;
+        //    }
+
+
+        //    else
+        //    {
+        //        inventoryInput.BackColor = Color.White;
+        //        //   buttonSave.Enabled = true;
+        //    }
+        //}
+
 
         private void priceInput_TextChanged(object sender, EventArgs e)
         {
@@ -229,6 +247,10 @@ namespace NHolbrook___IMS___Task1.Forms
             {
                 priceInput.BackColor = Color.Coral;
                 SaveValidation(priceInput.Text);
+            }
+            if (Regex.IsMatch(priceInput.Text, @"\.\d\d"))
+            {
+
             }
 
         }
@@ -278,28 +300,28 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             return;
         }
 
         private void associatedPartsDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-           
-            
+
+
         }
 
         private void addPartsButtoni_Click(object sender, EventArgs e)
         {
 
-           // Classes.Product prodToAsso = AssociatedPartsDGVhelper();
-                DataGridViewRow selectedRow = allCandidatePartsDGV.SelectedRows[0];
-                var partID = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
-            Classes.Part part = Classes.Inventory.lookupPart(partID);
+            // Classes.Product prodToAsso = AssociatedPartsDGVhelper();
+            DataGridViewRow selectedRow = allCandidatePartsDGV.SelectedRows[0];
+            var partID = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
+            Classes.Part part = Inventory.lookupPart(partID);
             DGVAssoParts.Add(part);
             holdingAreaParts.Add(part);
 
-     
+
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -323,9 +345,9 @@ namespace NHolbrook___IMS___Task1.Forms
                 MessageBox.Show("Please select something to delete.");
                 return;
             }
-           
-          
-            
+
+
+
         }
 
         private void AddProduct_Load(object sender, EventArgs e)
@@ -335,21 +357,22 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void cancelButton_Click(object sender, EventArgs e)
         {
-            foreach(Classes.Part part in holdingAreaParts)
-            {    
-                if (DGVAssoParts.Contains(part)){
+            foreach (Classes.Part part in holdingAreaParts)
+            {
+                if (DGVAssoParts.Contains(part))
+                {
                     DGVAssoParts.Remove(part);
                 }
             }
             this.Hide();
-            Main main = new Main();
+            //Main main = new Main();
 
-            main.ShowDialog();
+            //main.ShowDialog();
 
 
         }
 
-        private  Classes.Part lookupPart(int partID)
+        private Classes.Part lookupPart(int partID)
         {
             foreach (Classes.Part x in DGVAssoParts)
 
@@ -372,6 +395,38 @@ namespace NHolbrook___IMS___Task1.Forms
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+
+            SaveValidation(Convert.ToString(inventoryInput));
+
+            if (String.IsNullOrWhiteSpace(inventoryInput.Text))
+            {
+                inventoryInput.BackColor = Color.Coral;
+                buttonSave.Enabled = false;
+
+            }
+            else if (inventoryInput.Text.All(char.IsDigit) == false)
+            {
+                buttonSave.Enabled = false;
+                inventoryInput.BackColor = Color.Coral;
+            }
+
+            //else if (Convert.ToInt32(inventoryInput.Value) > Convert.ToInt32(minInput.Text))
+            //{
+            //    inventoryInput.BackColor = Color.White;
+            //    buttonSave.Enabled = true;
+            //}
+
+
+            else
+            {
+                inventoryInput.BackColor = Color.White;
+                buttonSave.Enabled = true;
             }
         }
     }

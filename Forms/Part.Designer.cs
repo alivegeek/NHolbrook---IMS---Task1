@@ -41,13 +41,17 @@ namespace NHolbrook___IMS___Task1.Forms
             this.labelMin = new System.Windows.Forms.Label();
             this.idInput = new System.Windows.Forms.TextBox();
             this.nameInput = new System.Windows.Forms.TextBox();
-            this.inventoryInput = new System.Windows.Forms.TextBox();
-            this.priceInput = new System.Windows.Forms.TextBox();
-            this.maxInput = new System.Windows.Forms.TextBox();
             this.machineIDinput = new System.Windows.Forms.TextBox();
-            this.minInput = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.inventoryInput = new System.Windows.Forms.NumericUpDown();
+            this.priceInput = new System.Windows.Forms.NumericUpDown();
+            this.maxInput = new System.Windows.Forms.NumericUpDown();
+            this.minInput = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxInput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minInput)).BeginInit();
             this.SuspendLayout();
             // 
             // partLabel
@@ -90,7 +94,7 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelID.AutoSize = true;
             this.labelID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelID.Location = new System.Drawing.Point(150, 115);
+            this.labelID.Location = new System.Drawing.Point(179, 116);
             this.labelID.Name = "labelID";
             this.labelID.Size = new System.Drawing.Size(31, 28);
             this.labelID.TabIndex = 3;
@@ -130,7 +134,7 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelMax.AutoSize = true;
             this.labelMax.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMax.Location = new System.Drawing.Point(150, 388);
+            this.labelMax.Location = new System.Drawing.Point(165, 385);
             this.labelMax.Name = "labelMax";
             this.labelMax.Size = new System.Drawing.Size(49, 28);
             this.labelMax.TabIndex = 7;
@@ -141,7 +145,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.machineID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.machineID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.machineID.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.machineID.Location = new System.Drawing.Point(50, 449);
+            this.machineID.Location = new System.Drawing.Point(55, 447);
             this.machineID.Name = "machineID";
             this.machineID.Size = new System.Drawing.Size(159, 28);
             this.machineID.TabIndex = 8;
@@ -153,7 +157,7 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelMin.AutoSize = true;
             this.labelMin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMin.Location = new System.Drawing.Point(357, 388);
+            this.labelMin.Location = new System.Drawing.Point(297, 384);
             this.labelMin.Name = "labelMin";
             this.labelMin.Size = new System.Drawing.Size(46, 28);
             this.labelMin.TabIndex = 9;
@@ -161,68 +165,32 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             // idInput
             // 
-            this.idInput.Location = new System.Drawing.Point(216, 117);
+            this.idInput.Location = new System.Drawing.Point(223, 117);
             this.idInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.idInput.Name = "idInput";
             this.idInput.ReadOnly = true;
-            this.idInput.Size = new System.Drawing.Size(182, 27);
+            this.idInput.Size = new System.Drawing.Size(175, 27);
             this.idInput.TabIndex = 10;
             this.idInput.TextChanged += new System.EventHandler(this.idInput_TextChanged);
             // 
             // nameInput
             // 
-            this.nameInput.Location = new System.Drawing.Point(216, 192);
+            this.nameInput.Location = new System.Drawing.Point(223, 192);
             this.nameInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.nameInput.Name = "nameInput";
-            this.nameInput.Size = new System.Drawing.Size(182, 27);
+            this.nameInput.Size = new System.Drawing.Size(175, 27);
             this.nameInput.TabIndex = 11;
             this.nameInput.TextChanged += new System.EventHandler(this.nameInput_TextChanged);
-            // 
-            // inventoryInput
-            // 
-            this.inventoryInput.Location = new System.Drawing.Point(216, 263);
-            this.inventoryInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.inventoryInput.Name = "inventoryInput";
-            this.inventoryInput.Size = new System.Drawing.Size(182, 27);
-            this.inventoryInput.TabIndex = 12;
-            this.inventoryInput.TextChanged += new System.EventHandler(this.inventoryInput_TextChanged);
-            // 
-            // priceInput
-            // 
-            this.priceInput.Location = new System.Drawing.Point(216, 331);
-            this.priceInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.priceInput.Name = "priceInput";
-            this.priceInput.Size = new System.Drawing.Size(182, 27);
-            this.priceInput.TabIndex = 13;
-            this.priceInput.TextChanged += new System.EventHandler(this.priceInput_TextChanged);
-            // 
-            // maxInput
-            // 
-            this.maxInput.Location = new System.Drawing.Point(216, 385);
-            this.maxInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.maxInput.Name = "maxInput";
-            this.maxInput.Size = new System.Drawing.Size(116, 27);
-            this.maxInput.TabIndex = 14;
-            this.maxInput.TextChanged += new System.EventHandler(this.maxInput_TextChanged);
             // 
             // machineIDinput
             // 
             this.machineIDinput.BackColor = System.Drawing.Color.White;
-            this.machineIDinput.Location = new System.Drawing.Point(216, 447);
+            this.machineIDinput.Location = new System.Drawing.Point(223, 447);
             this.machineIDinput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.machineIDinput.Name = "machineIDinput";
-            this.machineIDinput.Size = new System.Drawing.Size(182, 27);
+            this.machineIDinput.Size = new System.Drawing.Size(175, 27);
             this.machineIDinput.TabIndex = 15;
             this.machineIDinput.TextChanged += new System.EventHandler(this.machineIDinput_TextChanged);
-            // 
-            // minInput
-            // 
-            this.minInput.Location = new System.Drawing.Point(406, 385);
-            this.minInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.minInput.Name = "minInput";
-            this.minInput.Size = new System.Drawing.Size(116, 27);
-            this.minInput.TabIndex = 16;
-            this.minInput.TextChanged += new System.EventHandler(this.minInput_TextChanged);
             // 
             // buttonSave
             // 
@@ -246,18 +214,79 @@ namespace NHolbrook___IMS___Task1.Forms
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
+            // inventoryInput
+            // 
+            this.inventoryInput.Hexadecimal = true;
+            this.inventoryInput.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.inventoryInput.Location = new System.Drawing.Point(223, 270);
+            this.inventoryInput.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.inventoryInput.Name = "inventoryInput";
+            this.inventoryInput.Size = new System.Drawing.Size(180, 27);
+            this.inventoryInput.TabIndex = 19;
+            this.inventoryInput.ValueChanged += new System.EventHandler(this.inventoryInput_ValueChanged);
+            // 
+            // priceInput
+            // 
+            this.priceInput.DecimalPlaces = 2;
+            this.priceInput.Location = new System.Drawing.Point(224, 333);
+            this.priceInput.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.priceInput.Name = "priceInput";
+            this.priceInput.Size = new System.Drawing.Size(179, 27);
+            this.priceInput.TabIndex = 20;
+            this.priceInput.ThousandsSeparator = true;
+            this.priceInput.ValueChanged += new System.EventHandler(this.priceInput_ValueChanged);
+            // 
+            // maxInput
+            // 
+            this.maxInput.Location = new System.Drawing.Point(223, 385);
+            this.maxInput.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.maxInput.Name = "maxInput";
+            this.maxInput.Size = new System.Drawing.Size(68, 27);
+            this.maxInput.TabIndex = 21;
+            this.maxInput.ValueChanged += new System.EventHandler(this.maxInput_ValueChanged);
+            // 
+            // minInput
+            // 
+            this.minInput.Location = new System.Drawing.Point(339, 385);
+            this.minInput.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.minInput.Name = "minInput";
+            this.minInput.Size = new System.Drawing.Size(64, 27);
+            this.minInput.TabIndex = 22;
+            this.minInput.ThousandsSeparator = true;
+            this.minInput.ValueChanged += new System.EventHandler(this.minInput_ValueChanged);
+            // 
             // Part
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(550, 623);
-            this.Controls.Add(this.buttonCancel);
-            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.minInput);
-            this.Controls.Add(this.machineIDinput);
             this.Controls.Add(this.maxInput);
             this.Controls.Add(this.priceInput);
             this.Controls.Add(this.inventoryInput);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.machineIDinput);
             this.Controls.Add(this.nameInput);
             this.Controls.Add(this.idInput);
             this.Controls.Add(this.labelMin);
@@ -274,6 +303,10 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Name = "Part";
             this.Text = "Part";
             this.Load += new System.EventHandler(this.Part_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxInput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,12 +326,12 @@ namespace NHolbrook___IMS___Task1.Forms
         private System.Windows.Forms.Label labelMin;
         public System.Windows.Forms.TextBox idInput;
         public System.Windows.Forms.TextBox nameInput;
-        public System.Windows.Forms.TextBox inventoryInput;
-        public System.Windows.Forms.TextBox priceInput;
-        public System.Windows.Forms.TextBox maxInput;
         public System.Windows.Forms.TextBox machineIDinput;
-        public System.Windows.Forms.TextBox minInput;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonCancel;
+        public System.Windows.Forms.NumericUpDown inventoryInput;
+        public System.Windows.Forms.NumericUpDown priceInput;
+        public System.Windows.Forms.NumericUpDown maxInput;
+        public System.Windows.Forms.NumericUpDown minInput;
     }
 }

@@ -1,24 +1,20 @@
 using NHolbrook___IMS___Task1.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Diagnostics;
 namespace NHolbrook___IMS___Task1
 {
-     static class Program
+    static class Program
     {
-       
-    /// <summary>
-    ///  The main entry point for the application.
-    /// </summary>
-    [STAThread]
+
+        /// <summary>
+        ///  The main entry point for the application.
+        /// </summary>
+        [STAThread]
         static void Main()
         {
             //populate sample data here
             Classes.Inhouse part = new Classes.Inhouse(Classes.Inventory.GetNextPartID(), "Power Converter", 100, 2, 1, 255, 22); ;
-            Classes.Outsourced part2 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(),"Warp core ejector coil", 1024, 1, 10, 25, "Academy surplus");
+            Classes.Outsourced part2 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "Warp core ejector coil", 1024, 1, 10, 25, "Academy surplus");
             Classes.Outsourced part3 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "Litigating Ligature", 53.09, 1, 2, 8, "Johnnie Cochran Supply");
             Classes.Outsourced part4 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "Redudant Rotating Oscillator", 3.50, 1, 10, 25, "redundundundancy inc.");
             Classes.Outsourced part5 = new Classes.Outsourced(Classes.Inventory.GetNextPartID(), "George bushing", 5309, 43, 2001, 2009, "Whitehouse procurement co.");
@@ -41,7 +37,7 @@ namespace NHolbrook___IMS___Task1
             Classes.Inventory.addProduct(product2);
             Classes.Inventory.addProduct(product3);
 
-            
+
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
@@ -50,6 +46,6 @@ namespace NHolbrook___IMS___Task1
             Application.Run(main);
         }
 
-       
+
     }
 }

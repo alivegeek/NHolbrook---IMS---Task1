@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Windows.Forms;
 
@@ -44,7 +39,7 @@ namespace NHolbrook___IMS___Task1.Classes
         }
 
 
-        
+
         public static bool removeProduct(int id)
         {
             {
@@ -76,9 +71,9 @@ namespace NHolbrook___IMS___Task1.Classes
 
         public static void updatePart(int id, Part part)
         {
-            foreach( Part p in AllParts)
+            foreach (Part p in AllParts)
             {
-                if(p.PartID == id)
+                if (p.PartID == id)
                 {
                     deletePart(p);
                     addPart(part);
@@ -92,8 +87,17 @@ namespace NHolbrook___IMS___Task1.Classes
         }
         public static void addPart(Part part, int index)
         {
-            AllParts[index] = part;
-          //  AllParts.Insert(index, part);  
+            try
+            {
+                AllParts[index] = part;
+                //  AllParts.Insert(index, part);  
+            }
+            catch (Exception)
+            {
+                AllParts[index - 1] = part;
+
+            }
+
         }
 
         public static bool deletePart(Part part)
@@ -154,7 +158,7 @@ namespace NHolbrook___IMS___Task1.Classes
         {
             for (int i = 0; i < AllParts.Count; i++)
             {
-                if (AllParts[i].GetType() == typeof(Classes.Inhouse))
+                if (AllParts[i].GetType() == typeof(Inhouse))
                 {
                     Inhouse newPart = (Inhouse)AllParts[i];
 
@@ -172,33 +176,34 @@ namespace NHolbrook___IMS___Task1.Classes
         }
         public static void UpdateOutsourced(int partID, Outsourced outPart)
         {
-                for (int i = 0; i < AllParts.Count; i++)
+            for (int i = 0; i < AllParts.Count; i++)
+            {
+                if (AllParts[i].GetType() == typeof(Outsourced))
                 {
-                    if (AllParts[i].GetType() == typeof(Classes.Outsourced))
+                    Outsourced newPart = (Outsourced)AllParts[i];
+
+
+                    if (newPart.PartID == partID)
                     {
-                        Outsourced newPart = (Outsourced)AllParts[i];
 
-
-                        if (newPart.PartID == partID)
-                        {
-
-                            newPart.Name = outPart.Name;
-                            newPart.InStock = outPart.InStock;
-                            newPart.Price = outPart.Price;
-                            newPart.Min = outPart.Min;
-                            newPart.Max = outPart.Max;
-                            newPart.CompanyName = outPart.CompanyName;
-                        }
-                        
+                        newPart.Name = outPart.Name;
+                        newPart.InStock = outPart.InStock;
+                        newPart.Price = outPart.Price;
+                        newPart.Min = outPart.Min;
+                        newPart.Max = outPart.Max;
+                        newPart.CompanyName = outPart.CompanyName;
                     }
+
                 }
+            }
         }
 
-       
+
         public static bool SourceChange(int partID)
         {
+
             Part partToCheck = lookupPart(partID);
-            if (partToCheck.GetType() == typeof(Classes.Outsourced))
+            if (partToCheck.GetType() == typeof(Outsourced))
             {
                 return true;
             }
@@ -207,7 +212,7 @@ namespace NHolbrook___IMS___Task1.Classes
                 return false;
             }
         }
-        
+
 
 
     }

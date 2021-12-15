@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Collections;
+﻿using System.ComponentModel;
 namespace NHolbrook___IMS___Task1.Classes
 {
     public class Product
@@ -33,7 +27,7 @@ namespace NHolbrook___IMS___Task1.Classes
 
         }
 
- 
+
         public void AddAssociatedPart(Part part)
         {
             AssociatedParts.Add(part);
@@ -47,7 +41,7 @@ namespace NHolbrook___IMS___Task1.Classes
                 {
                     AssociatedParts.Remove(ap);
                 }
-             return true;
+                return true;
 
 
 
@@ -77,4 +71,4 @@ namespace NHolbrook___IMS___Task1.Classes
 
 }
 
-      
+

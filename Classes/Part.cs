@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-
-namespace NHolbrook___IMS___Task1.Classes
+﻿namespace NHolbrook___IMS___Task1.Classes
 {
-     public abstract class Part
-      
+    public abstract class Part
+
     {
         private int partID;
         private string name;

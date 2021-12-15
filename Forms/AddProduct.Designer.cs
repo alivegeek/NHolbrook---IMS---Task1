@@ -38,7 +38,6 @@ namespace NHolbrook___IMS___Task1.Forms
             this.productMaxLabel = new System.Windows.Forms.Label();
             this.IDinput = new System.Windows.Forms.TextBox();
             this.nameInput = new System.Windows.Forms.TextBox();
-            this.inventoryInput = new System.Windows.Forms.TextBox();
             this.priceInput = new System.Windows.Forms.TextBox();
             this.minInput = new System.Windows.Forms.TextBox();
             this.maxInput = new System.Windows.Forms.TextBox();
@@ -50,8 +49,10 @@ namespace NHolbrook___IMS___Task1.Forms
             this.deleteButton = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.inventoryInput = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.allCandidatePartsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.associatedPartsDGV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryInput)).BeginInit();
             this.SuspendLayout();
             // 
             // productTitleLabel
@@ -135,14 +136,6 @@ namespace NHolbrook___IMS___Task1.Forms
             this.nameInput.Size = new System.Drawing.Size(212, 23);
             this.nameInput.TabIndex = 8;
             this.nameInput.TextChanged += new System.EventHandler(this.nameInput_TextChanged);
-            // 
-            // inventoryInput
-            // 
-            this.inventoryInput.Location = new System.Drawing.Point(102, 268);
-            this.inventoryInput.Name = "inventoryInput";
-            this.inventoryInput.Size = new System.Drawing.Size(212, 23);
-            this.inventoryInput.TabIndex = 9;
-            this.inventoryInput.TextChanged += new System.EventHandler(this.inventoryInput_TextChanged);
             // 
             // priceInput
             // 
@@ -260,11 +253,20 @@ namespace NHolbrook___IMS___Task1.Forms
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // inventoryInput
+            // 
+            this.inventoryInput.Location = new System.Drawing.Point(103, 271);
+            this.inventoryInput.Name = "inventoryInput";
+            this.inventoryInput.Size = new System.Drawing.Size(211, 23);
+            this.inventoryInput.TabIndex = 21;
+            this.inventoryInput.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
             // AddProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1038, 705);
+            this.Controls.Add(this.inventoryInput);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.deleteButton);
@@ -276,7 +278,6 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Controls.Add(this.maxInput);
             this.Controls.Add(this.minInput);
             this.Controls.Add(this.priceInput);
-            this.Controls.Add(this.inventoryInput);
             this.Controls.Add(this.nameInput);
             this.Controls.Add(this.IDinput);
             this.Controls.Add(this.productMaxLabel);
@@ -291,6 +292,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Load += new System.EventHandler(this.AddProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.allCandidatePartsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.associatedPartsDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.inventoryInput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -307,7 +309,6 @@ namespace NHolbrook___IMS___Task1.Forms
         private System.Windows.Forms.Label productMaxLabel;
         public System.Windows.Forms.TextBox IDinput;
         public System.Windows.Forms.TextBox nameInput;
-        public System.Windows.Forms.TextBox inventoryInput;
         public System.Windows.Forms.TextBox priceInput;
         public System.Windows.Forms.TextBox minInput;
         public System.Windows.Forms.TextBox maxInput;
@@ -319,5 +320,6 @@ namespace NHolbrook___IMS___Task1.Forms
         private System.Windows.Forms.Button deleteButton;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button cancelButton;
+        public System.Windows.Forms.NumericUpDown inventoryInput;
     }
 }

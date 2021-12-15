@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NHolbrook___IMS___Task1.Classes
+﻿namespace NHolbrook___IMS___Task1.Classes
 {
-   public class Outsourced : Part
+    public class Outsourced : Part
     {
 
         public Outsourced(int partID, string name, double price, int inStock, int min, int max, string companyName)
@@ -14,8 +8,8 @@ namespace NHolbrook___IMS___Task1.Classes
         {
             CompanyName = companyName;
         }
-      
-//        public string CompanyName { get; set; }
+
+        //        public string CompanyName { get; set; }
 
 
     }

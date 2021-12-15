@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using NHolbrook___IMS___Task1.Classes;
 
 namespace NHolbrook___IMS___Task1.Forms
 {
@@ -28,13 +23,13 @@ namespace NHolbrook___IMS___Task1.Forms
         {
             InitializeComponent();
             formatDGV(PartsDGV);
-            PartsDGV.DataSource = Classes.Inventory.AllParts;
+            PartsDGV.DataSource = Inventory.AllParts;
             formatDGV(ProductsDGV);
-            ProductsDGV.DataSource = Classes.Inventory.Products;
+            ProductsDGV.DataSource = Inventory.Products;
         }
 
 
-            private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
 
@@ -54,43 +49,26 @@ namespace NHolbrook___IMS___Task1.Forms
         {
             this.Hide();
             Part part = new Part();
-            Classes.Globals.partIsNew = true;
-            part.idInput.Text = Convert.ToString(Classes.Inventory.GetNextPartID());
+            Globals.partIsNew = true;
+            part.idInput.Text = Convert.ToString(Inventory.GetNextPartID());
             part.ShowDialog();
 
         }
 
 
-        //private void buttonModifyPart_Click(object sender, EventArgs e)
-        //{
-        //    this.Hide();
-
-        //    if (PartsDGV.CurrentRow.DataBoundItem.GetType() == typeof(Classes.Inhouse))
-        //    {
-        //        Classes.Inhouse inhouse = (Classes.Inhouse)PartsDGV.CurrentRow.DataBoundItem;
-        //        new Part(inhouse).ShowDialog();
-        //    }
-        //    else
-        //    {
-        //        Classes.Outsourced outPart = (Classes.Outsourced)PartsDGV.CurrentRow.DataBoundItem;
-        //        new Part().ShowDialog();
-        //    }
-        //}
-
-
 
         private void modPart_Click(object sender, EventArgs e)
         {
-            Classes.Globals.partIsNew = false;
+            Globals.partIsNew = false;
             this.Hide();
             try
             {
                 DataGridViewRow selectedRow = PartsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
                 var partID = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
                 //Debug.WriteLine(Classes.Inventory.AllParts[currentIDX].Name);
-                Classes.Part part = Classes.Inventory.lookupPart(partID);
+                Classes.Part part = Inventory.lookupPart(partID);
                 // Debug.WriteLine(part);
-                Forms.Part partForm = new Part();
+                Part partForm = new Part();
                 partForm.idInput.Text = Convert.ToString(part.PartID);
                 partForm.nameInput.Text = part.Name;
                 partForm.inventoryInput.Text = Convert.ToString(part.InStock);
@@ -99,13 +77,13 @@ namespace NHolbrook___IMS___Task1.Forms
                 partForm.minInput.Text = Convert.ToString(part.Min);
                 partForm.machineIDinput.Text = Convert.ToString(part.MachineID);
 
-                if (Classes.Inventory.SourceChange(part.PartID) is true) //TRUE FOR OUTSOURCED
+                if (Inventory.SourceChange(part.PartID) is true) //TRUE FOR OUTSOURCED
                 {
                     partForm.machineIDinput.Text = part.CompanyName;
                 }
 
-                    partForm.ShowDialog();
-              
+                partForm.ShowDialog();
+
 
                 //if (selectedRow.Cells["PartID"].Value is null)
                 //{
@@ -135,69 +113,6 @@ namespace NHolbrook___IMS___Task1.Forms
 
 
 
-        //private void modPart_Click(object sender, EventArgs e)
-        //{
-        //    Classes.Globals.partIsNew = false;
-
-        //    {
-
-        //        this.Hide();
-
-        //        if (PartsDGV.CurrentRow.DataBoundItem.GetType() == typeof(Classes.Inhouse))
-        //        {
-        //            Classes.Inhouse inhouse = (Classes.Inhouse)PartsDGV.CurrentRow.DataBoundItem;
-        //            DataGridViewRow selectedrow = PartsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
-        //            var partid = Convert.ToInt32(selectedrow.Cells["partid"].Value);
-        //            Classes.Part part = Classes.Inventory.lookupPart(partid);
-        //            Forms.Part partform = new Part();
-        //            partform.idInput.Text = Convert.ToString(part.PartID);
-        //            partform.nameInput.Text = part.Name;
-        //            partform.inventoryInput.Text = Convert.ToString(part.InStock);
-        //            partform.priceInput.Text = Convert.ToString(part.Price);
-        //            partform.maxInput.Text = Convert.ToString(part.Max);
-        //            partform.minInput.Text = Convert.ToString(part.Min);
-        //           // partform.machineIDinput.Text = Classes.Inhouse.MachineID;
-        //            new Part(inhouse).ShowDialog();
-
-        //        }
-        //        else
-        //        {
-        //            Classes.Outsourced outPart = (Classes.Outsourced)PartsDGV.CurrentRow.DataBoundItem;
-        //            DataGridViewRow selectedrow = PartsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
-        //            var partid = Convert.ToInt32(selectedrow.Cells["partid"].Value);
-        //            Classes.Part part = Classes.Inventory.lookupPart(partid);
-        //            Forms.Part partform = new Part();
-        //            partform.idInput.Text = Convert.ToString(part.PartID);
-        //            partform.nameInput.Text = part.Name;
-        //            partform.inventoryInput.Text = Convert.ToString(part.InStock);
-        //            partform.priceInput.Text = Convert.ToString(part.Price);
-        //            partform.maxInput.Text = Convert.ToString(part.Max);
-        //            partform.minInput.Text = Convert.ToString(part.Min);
-        //            new Part().ShowDialog();
-        //        }
-        //    }
-        //}
-        //        // this.Hide();
-
-
-
-        //        //    partForm.ShowDialog();
-
-        //        //    return;
-        //        //} catch (ArgumentOutOfRangeException)
-        //        //{
-        //        //    MessageBox.Show("Please select something to modify");
-        //        //    return;
-        //        //}
-        //        ////if (PartsDGV.CurrentRow.Selected == false)
-
-
-
-
-
-
-
-
 
 
 
@@ -210,14 +125,14 @@ namespace NHolbrook___IMS___Task1.Forms
 
                 DataGridViewRow selectedRow = PartsDGV.SelectedRows[0];
                 var toDelete = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
-                Classes.Part partToDelete = Classes.Inventory.lookupPart(toDelete);
+                Classes.Part partToDelete = Inventory.lookupPart(toDelete);
 
                 if (MessageBox.Show($"are you sure you want to delete {partToDelete.Name}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    Classes.Inventory.deletePart(partToDelete);
+                    Inventory.deletePart(partToDelete);
                     // probably a hack -  DGV index errors after deleting a row so im rebuilding the DGV to reflect the changes
                     PartsDGV.DataSource = null;
-                    PartsDGV.DataSource = Classes.Inventory.AllParts;
+                    PartsDGV.DataSource = Inventory.AllParts;
 
                     PartsDGV.Refresh();
                 }
@@ -245,7 +160,7 @@ namespace NHolbrook___IMS___Task1.Forms
         private void button3_Click(object sender, EventArgs e)
         {
             AddProduct addproduct = new();
-            addproduct.IDinput.Text = Convert.ToString(Classes.Inventory.GetNextProductID());
+            addproduct.IDinput.Text = Convert.ToString(Inventory.GetNextProductID());
             try
             {
                 addproduct.ShowDialog();
@@ -262,31 +177,30 @@ namespace NHolbrook___IMS___Task1.Forms
             {
                 DataGridViewRow selectedRow = ProductsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
                 var productID = Convert.ToInt32(selectedRow.Cells["ProductID"].Value);
-                Forms.AddProduct.productID = productID;
+                AddProduct.productID = productID;
                 //Debug.WriteLine(Classes.Inventory.AllParts[currentIDX].Name);
-                Classes.Product product = Classes.Inventory.lookupProduct(productID);
+                Product product = Inventory.lookupProduct(productID);
                 // Debug.WriteLine(part);
-                Forms.AddProduct productForm = new();
+                AddProduct productForm = new();
                 productForm.IDinput.Text = Convert.ToString(product.ProductID);
                 productForm.nameInput.Text = product.Name;
-                productForm.inventoryInput.Text = Convert.ToString(product.InStock);
+                productForm.inventoryInput.Value = product.InStock;
                 productForm.priceInput.Text = Convert.ToString(product.Price);
                 productForm.maxInput.Text = Convert.ToString(product.Max);
                 productForm.minInput.Text = Convert.ToString(product.Min);
 
-                Forms.AddProduct.modifyOrNew = 1;
+                AddProduct.modifyOrNew = 1;
 
 
-       
+
 
                 productForm.ShowDialog();
                 this.Close();
-                return;
             }
             catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Please select something to modify");
-                return;
+
             }
         }
 
@@ -298,19 +212,19 @@ namespace NHolbrook___IMS___Task1.Forms
 
                 DataGridViewRow selectedRow = ProductsDGV.SelectedRows[0];
                 var toDelete = Convert.ToInt32(selectedRow.Cells["ProductID"].Value);
-                Classes.Product prodToDelete = Classes.Inventory.lookupProduct (toDelete);
+                Product prodToDelete = Inventory.lookupProduct(toDelete);
                 Debug.WriteLine(prodToDelete.AssociatedParts.Count);
                 if (prodToDelete.AssociatedParts.Count() > 0)
                 {
                     MessageBox.Show("Cannot delete a product with associated Parts. Please remove them first.");
-                    
+
                     return;
                 }
                 else if (MessageBox.Show($"are you sure you want to delete {prodToDelete.Name}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    Classes.Inventory.removeProduct(toDelete);
+                    Inventory.removeProduct(toDelete);
                     PartsDGV.DataSource = null;
-                    PartsDGV.DataSource = Classes.Inventory.AllParts;
+                    PartsDGV.DataSource = Inventory.AllParts;
 
                     PartsDGV.Refresh();
                 }
@@ -328,19 +242,19 @@ namespace NHolbrook___IMS___Task1.Forms
         {
             PartsDGV.ClearSelection();
             bool result = false;
-        
-            for (int i = 0; i < Classes.Inventory.AllParts.Count; i++)
+
+            for (int i = 0; i < Inventory.AllParts.Count; i++)
 
             {
-               
-                if (Classes.Inventory.AllParts[i].Name.ToUpper().Contains(searchInput.Text.ToUpper())) //should this iterate over the DGV instead? https://www.youtube.com/watch?v=JL30gSE3WaQ
+
+                if (Inventory.AllParts[i].Name.ToUpper().Contains(searchInput.Text.ToUpper())) //should this iterate over the DGV instead? https://www.youtube.com/watch?v=JL30gSE3WaQ
                 {
                     PartsDGV.Rows[i].Selected = true;
                     result = true;
                 }
 
-               
-                
+
+
             }
 
             if (!result)
@@ -362,11 +276,11 @@ namespace NHolbrook___IMS___Task1.Forms
             ProductsDGV.ClearSelection();
             bool result = false;
 
-            for (int i = 0; i < Classes.Inventory.Products.Count; i++)
+            for (int i = 0; i < Inventory.Products.Count; i++)
 
             {
 
-                if (Classes.Inventory.Products[i].Name.ToUpper().Contains(prodSearchInput.Text.ToUpper())) 
+                if (Inventory.Products[i].Name.ToUpper().Contains(prodSearchInput.Text.ToUpper()))
                 {
                     ProductsDGV.Rows[i].Selected = true;
                     result = true;
