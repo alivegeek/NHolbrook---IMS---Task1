@@ -173,6 +173,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
         public void modifyProductButton_Click(object sender, EventArgs e)
         {
+            this.Hide();
             try
             {
                 DataGridViewRow selectedRow = ProductsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
@@ -195,13 +196,14 @@ namespace NHolbrook___IMS___Task1.Forms
 
 
                 productForm.ShowDialog();
-                this.Close();
             }
             catch (ArgumentOutOfRangeException)
             {
                 MessageBox.Show("Please select something to modify");
 
             }
+          //  this.Close();
+
         }
 
         private void deleteProductButton_Click(object sender, EventArgs e)

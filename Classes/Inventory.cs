@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Linq;
 
 
 namespace NHolbrook___IMS___Task1.Classes
@@ -32,7 +33,6 @@ namespace NHolbrook___IMS___Task1.Classes
             nextProductID++;
             return nextProductID;
         }
-
         public static void addProduct(Product product)
         {
             Products.Add(product);
@@ -59,7 +59,7 @@ namespace NHolbrook___IMS___Task1.Classes
 
         public static void updateProduct(int productID, Product updatedProduct)
         {
-            foreach (Product p in Products)
+            foreach (Product p in Products.ToList())
             {
                 if (p.ProductID == productID)
                 {

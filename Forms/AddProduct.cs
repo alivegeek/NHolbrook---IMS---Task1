@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using NHolbrook___IMS___Task1.Classes;
+using System.Diagnostics;
 
 namespace NHolbrook___IMS___Task1.Forms
 
@@ -16,15 +17,17 @@ namespace NHolbrook___IMS___Task1.Forms
         public static int productID;
         private static List<Classes.Part> holdingAreaParts = new List<Classes.Part>();
         //  List<int> associatedPartIDs = new  List<int>();
-        private static BindingList<Classes.Part> DGVAssoParts = new BindingList<Classes.Part>();
+        private BindingList<Classes.Part> DGVAssoParts = new BindingList<Classes.Part>();
+
 
         public AddProduct()
 
         {
 
             InitializeComponent();
-
-
+            Debug.WriteLine("Test");
+            //populate DGV
+          
             inventoryInput.Controls[0].Visible = false;
 
             allCandidatePartsDGV.DataSource = Inventory.AllParts;
@@ -112,7 +115,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            this.Hide();
             if (Convert.ToInt32(inventoryInput.Value) < Convert.ToInt32(minInput.Text) || Convert.ToInt32(inventoryInput.Value) > Convert.ToInt32(maxInput.Text))
 
             {
@@ -138,15 +141,18 @@ namespace NHolbrook___IMS___Task1.Forms
             {
                 Product updatedProduct = new Product(Convert.ToInt32(IDinput.Text), nameInput.Text, Convert.ToDouble(priceInput.Text), Convert.ToInt32(inventoryInput.Text), Convert.ToInt32(minInput.Text), Convert.ToInt32(maxInput.Text));
 
-                foreach (Classes.Part part in DGVAssoParts)
-                {
-                    updatedProduct.AssociatedParts.Add(part);
-                }
+                //foreach (Classes.Part part in DGVAssoParts)
+                //{
+                //    updatedProduct.AssociatedParts.Add(part);
+                //}
                 //   Classes.Product productObject = Classes.Inventory.lookupProduct(Convert.ToInt32(IDinput.Text));
                 foreach (Classes.Part part in DGVAssoParts)
                 {
-                    updatedProduct.AssociatedParts.Add(part);
+                    Debug.WriteLine(part.Name);
+                    updatedProduct.AddAssociatedPart(part);
+                   // updatedProduct.AssociatedParts.Add(part);
                 }
+                Inventory.updateProduct(Convert.ToInt32(IDinput.Text), updatedProduct);
                 this.Hide();
                 if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text))
                 {
@@ -167,7 +173,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
                         }
                     }
-                    this.Hide();
+                    //this.Hide();
 
                     Main main = new Main();
                     main.ShowDialog();
@@ -319,7 +325,7 @@ namespace NHolbrook___IMS___Task1.Forms
             var partID = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
             Classes.Part part = Inventory.lookupPart(partID);
             DGVAssoParts.Add(part);
-            holdingAreaParts.Add(part);
+            holdingAreaParts.Add(part); //in case of cancel, use this data to clean up DGVAssoParts (See CalcenButton)
 
 
         }
@@ -330,7 +336,7 @@ namespace NHolbrook___IMS___Task1.Forms
             {
 
 
-                DataGridViewRow selectedRow = associatedPartsDGV.SelectedRows[0]; //  can i disable ctrl click so that multiple rows cant be slected?
+                DataGridViewRow selectedRow = associatedPartsDGV.SelectedRows[0]; 
                 var partID = Convert.ToInt32(selectedRow.Cells["PartID"].Value);
                 var partToDelete = lookupPart(partID);
                 if (MessageBox.Show($"are you sure you want to delete {partToDelete.Name}?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -352,7 +358,12 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void AddProduct_Load(object sender, EventArgs e)
         {
-
+            Product prod = Inventory.lookupProduct(productID);
+            foreach (Classes.Part part in prod.AssociatedParts)
+            {
+                DGVAssoParts.Add(part);
+                Debug.WriteLine(part.Name);
+            }
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -365,9 +376,9 @@ namespace NHolbrook___IMS___Task1.Forms
                 }
             }
             this.Hide();
-            //Main main = new Main();
+            Main main = new Main();
 
-            //main.ShowDialog();
+            main.ShowDialog();
 
 
         }

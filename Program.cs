@@ -37,7 +37,9 @@ namespace NHolbrook___IMS___Task1
             Classes.Inventory.addProduct(product2);
             Classes.Inventory.addProduct(product3);
 
-
+            //Asso Part
+            product1.AssociatedParts.Add(part);
+            product2.AssociatedParts.Add(part2);
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
