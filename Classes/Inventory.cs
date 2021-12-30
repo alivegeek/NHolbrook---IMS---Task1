@@ -71,7 +71,7 @@ namespace NHolbrook___IMS___Task1.Classes
 
         public static void updatePart(int id, Part part)
         {
-            foreach (Part p in AllParts)
+            foreach (Part p in AllParts.ToList())
             {
                 if (p.PartID == id)
                 {
@@ -199,22 +199,37 @@ namespace NHolbrook___IMS___Task1.Classes
         }
 
 
-        public static bool SourceChange(int partID)
+        public static bool SourceChange(int partID, bool type) //return true if location changes e.g. inhouse and outsourced -- type is true for outsourced false for inhouse
         {
-
+            bool result = false;
             Part partToCheck = lookupPart(partID);
             if (partToCheck.GetType() == typeof(Outsourced))
             {
-                return true;
+                result = true; //outsurced
+                if (result == type) // if outsourced == outsourced
+                {
+                    return false;
+
+                }
             }
-            else
+            else if (result == false)// if inhouse is checked
             {
-                return false;
+                if (partToCheck.GetType() == typeof(Inhouse))
+                {
+                    if (result == type) //if inhoiuse was checked and the part type is also in house
+                    {
+                        return false;
+
+                    }
+                }
+
+
             }
+
+
+            return true; //else return true because the other two possibilities are type changed from outsourced to inhosue or vice versa
+
+
         }
-
-
-
     }
-
 }

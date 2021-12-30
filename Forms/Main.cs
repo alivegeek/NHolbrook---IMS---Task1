@@ -77,7 +77,7 @@ namespace NHolbrook___IMS___Task1.Forms
                 partForm.minInput.Text = Convert.ToString(part.Min);
                 partForm.machineIDinput.Text = Convert.ToString(part.MachineID);
 
-                if (Inventory.SourceChange(part.PartID) is true) //TRUE FOR OUTSOURCED
+                if (Inventory.SourceChange(part.PartID, partForm.radioOutsourced.Checked) is true && part.GetType() == typeof(Outsourced))  //TRUE FOR OUTSOURCED
                 {
                     partForm.machineIDinput.Text = part.CompanyName;
                 }
@@ -159,6 +159,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             AddProduct addproduct = new();
             addproduct.IDinput.Text = Convert.ToString(Inventory.GetNextProductID());
             try

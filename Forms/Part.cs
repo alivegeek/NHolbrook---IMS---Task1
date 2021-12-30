@@ -322,15 +322,26 @@ namespace NHolbrook___IMS___Task1.Forms
         {
             this.Hide();
 
-            if (inventoryInput.Value < minInput.Value || string.IsNullOrEmpty(inventoryInput.Text) || string.IsNullOrWhiteSpace(inventoryInput.Text))
+            if (Convert.ToInt32(inventoryInput.Text) < Convert.ToInt32(minInput.Text) || string.IsNullOrEmpty(inventoryInput.Text) || string.IsNullOrWhiteSpace(inventoryInput.Text))
             {
                 MessageBox.Show("Inventory must be between Min and Max and must not be empty, blank, or non-numeric");
+                inventoryInput.BackColor = Color.Coral;
+
                 this.Show();
                 return;
             }
-            else if (maxInput.Value < minInput.Value || string.IsNullOrEmpty(inventoryInput.Text) || string.IsNullOrWhiteSpace(inventoryInput.Text))
+            else if (Convert.ToInt32(minInput.Text) > Convert.ToInt32(maxInput.Text) || string.IsNullOrEmpty(inventoryInput.Text) || string.IsNullOrWhiteSpace(inventoryInput.Text))
             {
                 MessageBox.Show("Min must be less than Max and must not Be blank, empty or non-numeric");
+
+                this.Show();
+                return;
+            }
+            else if (Convert.ToInt32(inventoryInput.Text) > Convert.ToInt32(maxInput.Text) || string.IsNullOrEmpty(inventoryInput.Text) || string.IsNullOrWhiteSpace(inventoryInput.Text))
+            {
+                MessageBox.Show("Inventory must be between Min and Max and must not be empty, blank, or non-numeric");
+                inventoryInput.BackColor = Color.Coral;
+
                 this.Show();
                 return;
             }
@@ -372,7 +383,7 @@ namespace NHolbrook___IMS___Task1.Forms
             else
 
             {
-                bool isChangingType = Inventory.SourceChange(Convert.ToInt32(idInput.Text));
+                bool isChangingType = Inventory.SourceChange(Convert.ToInt32(idInput.Text), radioOutsourced.Checked);
                 if (radioInHouse.Checked & isChangingType == true)
                 {
                     int index = Convert.ToInt32(idInput.Text);
@@ -392,7 +403,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
                 }
 
-                else if (radioOutsourced.Checked & isChangingType == false)
+                else if (radioOutsourced.Checked & isChangingType == true)
                 {
                     int index = Convert.ToInt32(idInput.Text);
 
@@ -410,9 +421,9 @@ namespace NHolbrook___IMS___Task1.Forms
 
 
 
-
-                {
-                    if (radioOutsourced.Checked)
+                
+                
+                else if (radioOutsourced.Checked & isChangingType == false)
                     {
                         Inventory.UpdateOutsourced(Convert.ToInt32(idInput.Text), new Outsourced(
                                          (Inventory.AllParts.Count),
@@ -426,8 +437,24 @@ namespace NHolbrook___IMS___Task1.Forms
 
 
 
-                    }
                 }
+                else
+                {
+                    int index = Convert.ToInt32(idInput.Text);
+                    
+                    Inhouse replacementObject = new Inhouse(
+                                        Convert.ToInt32(idInput.Text),
+                                       nameInput.Text,
+                                       Convert.ToDouble(priceInput.Text),
+                                       Convert.ToInt32(inventoryInput.Text),
+                                       Convert.ToInt32(minInput.Text),
+                                       Convert.ToInt32(maxInput.Text),
+                                       Convert.ToInt32(machineIDinput.Text));
+
+
+                    Inventory.updatePart(index, replacementObject);
+                }
+                
 
 
 
@@ -470,7 +497,7 @@ namespace NHolbrook___IMS___Task1.Forms
             }
             else
             {
-                if (Inventory.SourceChange(Convert.ToInt32(idInput.Text)) is true) //TRUE FOR OUTSOURCED
+                if (Inventory.SourceChange(Convert.ToInt32(idInput.Text), radioOutsourced.Checked) is true && radioOutsourced.Checked is true) //TRUE FOR OUTSOURCED
                 {
                     radioOutsourced.Checked = true;
                     machineID.Text = "Company Name";

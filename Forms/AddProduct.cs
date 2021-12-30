@@ -119,20 +119,31 @@ namespace NHolbrook___IMS___Task1.Forms
             if (Convert.ToInt32(inventoryInput.Value) < Convert.ToInt32(minInput.Text) || Convert.ToInt32(inventoryInput.Value) > Convert.ToInt32(maxInput.Text))
 
             {
-                buttonSave.Enabled = false;
-                MessageBox.Show("Inventory must be between Min and Max values.");
+                if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text))
+                {
+                    MessageBox.Show("Max cannot be less than Min");
+                }
+                else
+                {
+                    MessageBox.Show("Inventory must be between Min and Max values.");
+                }
+                this.Show();
                 return;
             }
 
             if (associatedPartsDGV.RowCount == 0)
             {
                 MessageBox.Show("Product must contain atleast one associated part.");
+                this.Show();
+
                 return;
             }
 
             else if (Convert.ToInt32(maxInput.Text) < Convert.ToInt32(minInput.Text))
             {
                 MessageBox.Show("Max cannot be less than Min");
+                this.Show();
+
                 return;
             }
 
@@ -358,12 +369,21 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void AddProduct_Load(object sender, EventArgs e)
         {
-            Product prod = Inventory.lookupProduct(productID);
-            foreach (Classes.Part part in prod.AssociatedParts)
+            if (modifyOrNew == 1)
+
             {
-                DGVAssoParts.Add(part);
-                Debug.WriteLine(part.Name);
+
+                Product prod = Inventory.lookupProduct(productID);
+                foreach (Classes.Part part in prod.AssociatedParts)
+                {
+                    DGVAssoParts.Add(part);
+                    Debug.WriteLine(part.Name);
+
+                }
             }
+            minInput.Text = "0";
+            maxInput.Text = "0";
+            inventoryInput.Value = 0;
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -426,6 +446,11 @@ namespace NHolbrook___IMS___Task1.Forms
                 buttonSave.Enabled = false;
                 inventoryInput.BackColor = Color.Coral;
             }
+            //}else if (Convert.ToInt32(inventoryInput.Value) < Convert.ToInt32(minInput.Text) || Convert.ToInt32(inventoryInput.Value) > Convert.ToInt32(maxInput.Text))
+            //{
+            //    inventoryInput.BackColor = Color.Coral;
+
+            //}
 
             //else if (Convert.ToInt32(inventoryInput.Value) > Convert.ToInt32(minInput.Text))
             //{
