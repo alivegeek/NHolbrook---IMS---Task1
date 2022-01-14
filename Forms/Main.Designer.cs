@@ -80,9 +80,10 @@ namespace NHolbrook___IMS___Task1.Forms
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(281, 25);
+            this.label1.Size = new System.Drawing.Size(291, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Inventory Managment System";
+            this.label1.Text = "Inventory Management System";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // partsDGVlabel
             // 
@@ -256,6 +257,7 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Controls.Add(this.PartsDGV);
             this.Name = "Main";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PartsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ProductsDGV)).EndInit();
             this.ResumeLayout(false);

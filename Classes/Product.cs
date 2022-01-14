@@ -5,8 +5,8 @@ namespace NHolbrook___IMS___Task1.Classes
     {
 
         public BindingList<Part> AssociatedParts = new BindingList<Part>();
-        
-        
+
+
         public int ProductID { get; set; }
 
         public string Name { get; set; }
@@ -69,7 +69,7 @@ namespace NHolbrook___IMS___Task1.Classes
         }
 
     }
-    
+
 }
 
 

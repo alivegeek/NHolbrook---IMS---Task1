@@ -213,6 +213,8 @@ namespace NHolbrook___IMS___Task1.Forms
             this.associatedPartsDGV.Size = new System.Drawing.Size(621, 207);
             this.associatedPartsDGV.TabIndex = 16;
             this.associatedPartsDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.associatedPartsDGV_CellContentClick);
+            this.associatedPartsDGV.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.associatedPartsDGV_RowsAdded_1);
+            this.associatedPartsDGV.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.associatedPartsDGV_RowsRemoved_1);
             // 
             // associatedPartsLabel
             // 
@@ -260,6 +262,9 @@ namespace NHolbrook___IMS___Task1.Forms
             this.inventoryInput.Size = new System.Drawing.Size(211, 23);
             this.inventoryInput.TabIndex = 21;
             this.inventoryInput.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.inventoryInput.RightToLeftChanged += new System.EventHandler(this.inventoryInput_RightToLeftChanged);
+            this.inventoryInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.inventoryInput_KeyPress);
+            this.inventoryInput.MouseUp += new System.Windows.Forms.MouseEventHandler(this.inventoryInput_MouseUp);
             // 
             // AddProduct
             // 
@@ -289,7 +294,13 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Controls.Add(this.productTitleLabel);
             this.Name = "AddProduct";
             this.Text = "AddProduct";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AddProduct_FormClosing);
             this.Load += new System.EventHandler(this.AddProduct_Load);
+            this.CursorChanged += new System.EventHandler(this.AddProduct_CursorChanged);
+            this.TextChanged += new System.EventHandler(this.AddProduct_TextChanged);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AddProduct_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.AddProduct_KeyUp);
+            this.Leave += new System.EventHandler(this.AddProduct_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.allCandidatePartsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.associatedPartsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryInput)).EndInit();

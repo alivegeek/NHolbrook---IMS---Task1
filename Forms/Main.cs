@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NHolbrook___IMS___Task1.Classes;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
-using NHolbrook___IMS___Task1.Classes;
 
 namespace NHolbrook___IMS___Task1.Forms
 {
@@ -156,10 +156,12 @@ namespace NHolbrook___IMS___Task1.Forms
         {
 
         }
-
+        //Add Product Button
         private void button3_Click(object sender, EventArgs e)
         {
+            AddProduct.modifyOrNew = 0;
 
+            this.Hide();
             AddProduct addproduct = new();
             addproduct.IDinput.Text = Convert.ToString(Inventory.GetNextProductID());
             try
@@ -203,7 +205,7 @@ namespace NHolbrook___IMS___Task1.Forms
                 MessageBox.Show("Please select something to modify");
 
             }
-          //  this.Close();
+            //  this.Close();
 
         }
 
@@ -297,6 +299,16 @@ namespace NHolbrook___IMS___Task1.Forms
             {
                 MessageBox.Show("Search returned no results.");
             }
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
 
         }
     }

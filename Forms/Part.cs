@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NHolbrook___IMS___Task1.Classes;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using NHolbrook___IMS___Task1.Classes;
 
 namespace NHolbrook___IMS___Task1.Forms
 
@@ -322,6 +322,32 @@ namespace NHolbrook___IMS___Task1.Forms
         {
             this.Hide();
 
+            try
+            {
+                Convert.ToInt32(minInput.Text);
+                Convert.ToInt32(maxInput.Text);
+
+            }
+            catch
+            {
+
+                maxInput.BackColor = Color.Coral;
+                this.Show();
+                MessageBox.Show("Invalid field: Please ensure all fields are populated. No input field may be blank");
+                return;
+            }
+            if (String.IsNullOrEmpty(inventoryInput.Text) || String.IsNullOrWhiteSpace(inventoryInput.Text) ||
+                String.IsNullOrEmpty(Convert.ToString(minInput.Value)) || String.IsNullOrWhiteSpace(Convert.ToString(minInput.Value)) ||
+                String.IsNullOrEmpty(Convert.ToString(maxInput.Value)) || String.IsNullOrWhiteSpace(Convert.ToString(maxInput.Value)
+                ))
+            {
+                buttonSave.Enabled = false;
+                inventoryInput.BackColor = Color.Coral;
+                MessageBox.Show("Inventory must be between Min and Max. All fields must be not be empty or blank");
+                this.Show();
+                return;
+
+            }
             if (Convert.ToInt32(inventoryInput.Text) < Convert.ToInt32(minInput.Text) || string.IsNullOrEmpty(inventoryInput.Text) || string.IsNullOrWhiteSpace(inventoryInput.Text))
             {
                 MessageBox.Show("Inventory must be between Min and Max and must not be empty, blank, or non-numeric");
@@ -421,19 +447,19 @@ namespace NHolbrook___IMS___Task1.Forms
 
 
 
-                
-                
+
+
                 else if (radioOutsourced.Checked & isChangingType == false)
-                    {
-                        Inventory.UpdateOutsourced(Convert.ToInt32(idInput.Text), new Outsourced(
-                                         (Inventory.AllParts.Count),
-                                          nameInput.Text,
-                                          Convert.ToDouble(priceInput.Text),
-                                          Convert.ToInt32(inventoryInput.Text),
-                                          Convert.ToInt32(minInput.Text),
-                                          Convert.ToInt32(maxInput.Text),
-                                          machineIDinput.Text)
-                                          );
+                {
+                    Inventory.UpdateOutsourced(Convert.ToInt32(idInput.Text), new Outsourced(
+                                     (Inventory.AllParts.Count),
+                                      nameInput.Text,
+                                      Convert.ToDouble(priceInput.Text),
+                                      Convert.ToInt32(inventoryInput.Text),
+                                      Convert.ToInt32(minInput.Text),
+                                      Convert.ToInt32(maxInput.Text),
+                                      machineIDinput.Text)
+                                      );
 
 
 
@@ -441,7 +467,7 @@ namespace NHolbrook___IMS___Task1.Forms
                 else
                 {
                     int index = Convert.ToInt32(idInput.Text);
-                    
+
                     Inhouse replacementObject = new Inhouse(
                                         Convert.ToInt32(idInput.Text),
                                        nameInput.Text,
@@ -454,7 +480,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
                     Inventory.updatePart(index, replacementObject);
                 }
-                
+
 
 
 
@@ -595,12 +621,19 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void minInput_ValueChanged(object sender, EventArgs e)
         {
+            try { Convert.ToString(minInput.Value); }
+            catch
+            {
+                buttonSave.Enabled = false;
+                maxInput.BackColor = Color.Coral;
+            }
             if (String.IsNullOrWhiteSpace(minInput.Text))
             {
                 minInput.BackColor = Color.Coral;
                 buttonSave.Enabled = false;
 
             }
+
             else if (minInput.Text.All(char.IsDigit) == false)
             {
                 buttonSave.Enabled = false;

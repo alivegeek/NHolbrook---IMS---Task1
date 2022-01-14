@@ -58,19 +58,18 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.partLabel.AutoSize = true;
             this.partLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.partLabel.Location = new System.Drawing.Point(14, 12);
+            this.partLabel.Location = new System.Drawing.Point(12, 9);
             this.partLabel.Name = "partLabel";
-            this.partLabel.Size = new System.Drawing.Size(96, 28);
+            this.partLabel.Size = new System.Drawing.Size(76, 21);
             this.partLabel.TabIndex = 0;
             this.partLabel.Text = "Add Part";
             // 
             // radioInHouse
             // 
             this.radioInHouse.AutoSize = true;
-            this.radioInHouse.Location = new System.Drawing.Point(174, 16);
-            this.radioInHouse.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radioInHouse.Location = new System.Drawing.Point(152, 12);
             this.radioInHouse.Name = "radioInHouse";
-            this.radioInHouse.Size = new System.Drawing.Size(90, 24);
+            this.radioInHouse.Size = new System.Drawing.Size(74, 19);
             this.radioInHouse.TabIndex = 1;
             this.radioInHouse.TabStop = true;
             this.radioInHouse.Text = "In-House";
@@ -80,10 +79,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // radioOutsourced
             // 
             this.radioOutsourced.AutoSize = true;
-            this.radioOutsourced.Location = new System.Drawing.Point(339, 16);
-            this.radioOutsourced.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.radioOutsourced.Location = new System.Drawing.Point(297, 12);
             this.radioOutsourced.Name = "radioOutsourced";
-            this.radioOutsourced.Size = new System.Drawing.Size(106, 24);
+            this.radioOutsourced.Size = new System.Drawing.Size(87, 19);
             this.radioOutsourced.TabIndex = 2;
             this.radioOutsourced.TabStop = true;
             this.radioOutsourced.Text = "Outsourced";
@@ -94,9 +92,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelID.AutoSize = true;
             this.labelID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelID.Location = new System.Drawing.Point(179, 116);
+            this.labelID.Location = new System.Drawing.Point(157, 87);
             this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(31, 28);
+            this.labelID.Size = new System.Drawing.Size(25, 21);
             this.labelID.TabIndex = 3;
             this.labelID.Text = "ID";
             // 
@@ -104,9 +102,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelName.Location = new System.Drawing.Point(150, 195);
+            this.labelName.Location = new System.Drawing.Point(131, 146);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(64, 28);
+            this.labelName.Size = new System.Drawing.Size(52, 21);
             this.labelName.TabIndex = 4;
             this.labelName.Text = "Name";
             // 
@@ -114,9 +112,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelInventory.AutoSize = true;
             this.labelInventory.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelInventory.Location = new System.Drawing.Point(122, 265);
+            this.labelInventory.Location = new System.Drawing.Point(107, 199);
             this.labelInventory.Name = "labelInventory";
-            this.labelInventory.Size = new System.Drawing.Size(95, 28);
+            this.labelInventory.Size = new System.Drawing.Size(76, 21);
             this.labelInventory.TabIndex = 5;
             this.labelInventory.Text = "Inventory";
             // 
@@ -124,9 +122,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelPrice.AutoSize = true;
             this.labelPrice.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelPrice.Location = new System.Drawing.Point(107, 333);
+            this.labelPrice.Location = new System.Drawing.Point(94, 250);
             this.labelPrice.Name = "labelPrice";
-            this.labelPrice.Size = new System.Drawing.Size(111, 28);
+            this.labelPrice.Size = new System.Drawing.Size(89, 21);
             this.labelPrice.TabIndex = 6;
             this.labelPrice.Text = "Price / Cost";
             // 
@@ -134,9 +132,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelMax.AutoSize = true;
             this.labelMax.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMax.Location = new System.Drawing.Point(165, 385);
+            this.labelMax.Location = new System.Drawing.Point(144, 289);
             this.labelMax.Name = "labelMax";
-            this.labelMax.Size = new System.Drawing.Size(49, 28);
+            this.labelMax.Size = new System.Drawing.Size(39, 21);
             this.labelMax.TabIndex = 7;
             this.labelMax.Text = "Max";
             // 
@@ -145,9 +143,9 @@ namespace NHolbrook___IMS___Task1.Forms
             this.machineID.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.machineID.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.machineID.ImageAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.machineID.Location = new System.Drawing.Point(55, 447);
+            this.machineID.Location = new System.Drawing.Point(48, 335);
             this.machineID.Name = "machineID";
-            this.machineID.Size = new System.Drawing.Size(159, 28);
+            this.machineID.Size = new System.Drawing.Size(139, 21);
             this.machineID.TabIndex = 8;
             this.machineID.Text = "Machine ID";
             this.machineID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -157,47 +155,43 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             this.labelMin.AutoSize = true;
             this.labelMin.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.labelMin.Location = new System.Drawing.Point(297, 384);
+            this.labelMin.Location = new System.Drawing.Point(260, 288);
             this.labelMin.Name = "labelMin";
-            this.labelMin.Size = new System.Drawing.Size(46, 28);
+            this.labelMin.Size = new System.Drawing.Size(37, 21);
             this.labelMin.TabIndex = 9;
             this.labelMin.Text = "Min";
             // 
             // idInput
             // 
-            this.idInput.Location = new System.Drawing.Point(223, 117);
-            this.idInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.idInput.Location = new System.Drawing.Point(195, 88);
             this.idInput.Name = "idInput";
             this.idInput.ReadOnly = true;
-            this.idInput.Size = new System.Drawing.Size(175, 27);
+            this.idInput.Size = new System.Drawing.Size(154, 23);
             this.idInput.TabIndex = 10;
             this.idInput.TextChanged += new System.EventHandler(this.idInput_TextChanged);
             // 
             // nameInput
             // 
-            this.nameInput.Location = new System.Drawing.Point(223, 192);
-            this.nameInput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.nameInput.Location = new System.Drawing.Point(195, 144);
             this.nameInput.Name = "nameInput";
-            this.nameInput.Size = new System.Drawing.Size(175, 27);
+            this.nameInput.Size = new System.Drawing.Size(154, 23);
             this.nameInput.TabIndex = 11;
             this.nameInput.TextChanged += new System.EventHandler(this.nameInput_TextChanged);
             // 
             // machineIDinput
             // 
             this.machineIDinput.BackColor = System.Drawing.Color.White;
-            this.machineIDinput.Location = new System.Drawing.Point(223, 447);
-            this.machineIDinput.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.machineIDinput.Location = new System.Drawing.Point(195, 335);
             this.machineIDinput.Name = "machineIDinput";
-            this.machineIDinput.Size = new System.Drawing.Size(175, 27);
+            this.machineIDinput.Size = new System.Drawing.Size(154, 23);
             this.machineIDinput.TabIndex = 15;
             this.machineIDinput.TextChanged += new System.EventHandler(this.machineIDinput_TextChanged);
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(353, 527);
-            this.buttonSave.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonSave.Location = new System.Drawing.Point(309, 395);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(72, 61);
+            this.buttonSave.Size = new System.Drawing.Size(63, 46);
             this.buttonSave.TabIndex = 17;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -205,10 +199,9 @@ namespace NHolbrook___IMS___Task1.Forms
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(450, 527);
-            this.buttonCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonCancel.Location = new System.Drawing.Point(394, 395);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(72, 61);
+            this.buttonCancel.Size = new System.Drawing.Size(63, 46);
             this.buttonCancel.TabIndex = 18;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -222,64 +215,68 @@ namespace NHolbrook___IMS___Task1.Forms
             0,
             0,
             0});
-            this.inventoryInput.Location = new System.Drawing.Point(223, 270);
+            this.inventoryInput.Location = new System.Drawing.Point(195, 202);
+            this.inventoryInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.inventoryInput.Maximum = new decimal(new int[] {
             100000,
             0,
             0,
             0});
             this.inventoryInput.Name = "inventoryInput";
-            this.inventoryInput.Size = new System.Drawing.Size(180, 27);
+            this.inventoryInput.Size = new System.Drawing.Size(158, 23);
             this.inventoryInput.TabIndex = 19;
             this.inventoryInput.ValueChanged += new System.EventHandler(this.inventoryInput_ValueChanged);
             // 
             // priceInput
             // 
             this.priceInput.DecimalPlaces = 2;
-            this.priceInput.Location = new System.Drawing.Point(224, 333);
+            this.priceInput.Location = new System.Drawing.Point(196, 250);
+            this.priceInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.priceInput.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.priceInput.Name = "priceInput";
-            this.priceInput.Size = new System.Drawing.Size(179, 27);
+            this.priceInput.Size = new System.Drawing.Size(157, 23);
             this.priceInput.TabIndex = 20;
             this.priceInput.ThousandsSeparator = true;
             this.priceInput.ValueChanged += new System.EventHandler(this.priceInput_ValueChanged);
             // 
             // maxInput
             // 
-            this.maxInput.Location = new System.Drawing.Point(223, 385);
+            this.maxInput.Location = new System.Drawing.Point(195, 289);
+            this.maxInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.maxInput.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.maxInput.Name = "maxInput";
-            this.maxInput.Size = new System.Drawing.Size(68, 27);
+            this.maxInput.Size = new System.Drawing.Size(60, 23);
             this.maxInput.TabIndex = 21;
             this.maxInput.ValueChanged += new System.EventHandler(this.maxInput_ValueChanged);
             // 
             // minInput
             // 
-            this.minInput.Location = new System.Drawing.Point(339, 385);
+            this.minInput.Location = new System.Drawing.Point(297, 289);
+            this.minInput.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.minInput.Maximum = new decimal(new int[] {
             10000,
             0,
             0,
             0});
             this.minInput.Name = "minInput";
-            this.minInput.Size = new System.Drawing.Size(64, 27);
+            this.minInput.Size = new System.Drawing.Size(56, 23);
             this.minInput.TabIndex = 22;
             this.minInput.ThousandsSeparator = true;
             this.minInput.ValueChanged += new System.EventHandler(this.minInput_ValueChanged);
             // 
             // Part
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 623);
+            this.ClientSize = new System.Drawing.Size(481, 467);
             this.Controls.Add(this.minInput);
             this.Controls.Add(this.maxInput);
             this.Controls.Add(this.priceInput);
@@ -299,7 +296,6 @@ namespace NHolbrook___IMS___Task1.Forms
             this.Controls.Add(this.radioOutsourced);
             this.Controls.Add(this.radioInHouse);
             this.Controls.Add(this.partLabel);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Part";
             this.Text = "Part";
             this.Load += new System.EventHandler(this.Part_Load);
