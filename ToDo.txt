@@ -1,6 +1,1 @@
-﻿- Code ability to add data 
-	-- Figure out how to create dummy data and add it into the dataframe on main
-
-
-- add functionality to exit button
-
+﻿

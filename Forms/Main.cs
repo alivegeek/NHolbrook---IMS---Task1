@@ -1,6 +1,7 @@
 ﻿using NHolbrook___IMS___Task1.Classes;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -80,6 +81,8 @@ namespace NHolbrook___IMS___Task1.Forms
                 if (Inventory.SourceChange(part.PartID, partForm.radioOutsourced.Checked) is true && part.GetType() == typeof(Outsourced))  //TRUE FOR OUTSOURCED
                 {
                     partForm.machineIDinput.Text = part.CompanyName;
+                    partForm.radioOutsourced.Checked = true;
+                    partForm.machineIDinput.BackColor = Color.White;
                 }
 
                 partForm.ShowDialog();

@@ -380,7 +380,7 @@ namespace NHolbrook___IMS___Task1.Forms
                 if (radioInHouse.Checked)
                 {
                     Inventory.addPart(new Inhouse(
-                                      (Inventory.AllParts.Count + 1),
+                                      (Inventory.AllParts.Count ),
                                       nameInput.Text,
                                       Convert.ToDouble(priceInput.Text),
                                       Convert.ToInt32(inventoryInput.Text),
@@ -395,7 +395,7 @@ namespace NHolbrook___IMS___Task1.Forms
                     if (radioOutsourced.Checked)
                     {
                         Inventory.addPart(new Outsourced(
-                                          (Inventory.AllParts.Count + 1),
+                                          (Inventory.AllParts.Count ),
                                           nameInput.Text,
                                           Convert.ToDouble(priceInput.Text),
                                           Convert.ToInt32(inventoryInput.Text),

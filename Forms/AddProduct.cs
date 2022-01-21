@@ -197,11 +197,11 @@ namespace NHolbrook___IMS___Task1.Forms
             else
             {
                 associatedPartsDGV.BackgroundColor = Color.White;
-                total++;
+               // total++;
             }
 
             CanSave();
-            if (total == 4)
+            if (total == 3)
             {
                 buttonSave.Enabled = true;
                 return true;
@@ -368,13 +368,13 @@ namespace NHolbrook___IMS___Task1.Forms
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (HasSpecialChars(priceInput.Text) is true)
-            {
-                buttonSave.Enabled = false;
-                priceInput.BackColor = Color.Coral;
-                MessageBox.Show("The price input field must be in USD Currency Format and cannot contain any alpha or special characters");
-                return;
-            }
+            //if (HasSpecialChars(priceInput.Text) is true)
+            //{
+            //    buttonSave.Enabled = false;
+            //    priceInput.BackColor = Color.Coral;
+            //    MessageBox.Show("The price input field must be in USD Currency Format and cannot contain any alpha or special characters");
+            //    return;
+            //}
             if (inventoryInput.Text == "")
             {
                 // If the value in the numeric updown is an empty string, replace with 0.
@@ -423,7 +423,7 @@ namespace NHolbrook___IMS___Task1.Forms
 
 
 
-            if (associatedPartsDGV.RowCount == 0)
+            if (associatedPartsDGV.RowCount == 0 && modifyOrNew == 0) // and product is new
             {
                 MessageBox.Show("Product must contain atleast one associated part.");
                 this.Show();
@@ -591,9 +591,9 @@ namespace NHolbrook___IMS___Task1.Forms
                 //Unsub the event so we don't enter a loop
                 priceInput.TextChanged -= priceInput_TextChanged;
                 //Format the text as currency
-                priceInput.Text = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0:C2}", ul);
-                priceInput.TextChanged += priceInput_TextChanged;
-                priceInput.Select(priceInput.Text.Replace("$", "").Length, 0);
+                //priceInput.Text = string.Format(CultureInfo.CreateSpecificCulture("en-US"), "{0:C2}", ul);
+               // priceInput.TextChanged += priceInput_TextChanged;
+                //priceInput.Select(priceInput.Text.Replace("$", "").Length, 0);
             }
             bool goodToGo = TextisValid(priceInput.Text.Replace("$", ""));
             buttonSave.Enabled = goodToGo;
@@ -728,7 +728,7 @@ namespace NHolbrook___IMS___Task1.Forms
                 minInput.Text = "0";
                 maxInput.Text = "0";
                 inventoryInput.Value = 0;
-                priceInput.Text = "$0.00";
+                priceInput.Text = "0";
                 priceInput.SelectionStart = priceInput.Text.Replace("$", "").Length;
 
 
